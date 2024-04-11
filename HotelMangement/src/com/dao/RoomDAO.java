@@ -15,8 +15,8 @@ public class RoomDAO {
 	}
 
 	// save
-	public int save(SqlSession session, RoomDTO dto) {
-		return session.insert("com.config.HotelMapper.save", dto);
+	public int saveRoom(SqlSession session, RoomDTO dto) {
+		return session.insert("com.config.HotelMapper.saveRoom", dto);
 	}
 
 	// remove

@@ -45,13 +45,13 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public int save(RoomDTO dto) {
+	public int saveRoom(RoomDTO dto) {
 		int n = 0;
 		SqlSession session = null;
 		try {
 			session = MySqlSessionFactory.getSession();
 			// DAO 연동코드
-			n = dao.save(session, dto);
+			n = dao.saveRoom(session, dto);
 			session.commit();
 		} finally {
 			session.close();

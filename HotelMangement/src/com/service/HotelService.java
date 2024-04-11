@@ -11,7 +11,7 @@ public interface HotelService {
 
 	public List<RoomDTO> findAllRoom();
 
-	public int save(RoomDTO dto);
+	public int saveRoom(RoomDTO dto);
 
 	public int removeByEmpno(int empno);
 }
