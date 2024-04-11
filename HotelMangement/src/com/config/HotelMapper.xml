@@ -3,29 +3,39 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.config.EmpMapper">
+<mapper namespace="com.config.HotelMapper">
  
    <!-- 사원 저장 -->
-   <insert id="save" parameterType="HotelDTO">
+   <!--<insert id="save" parameterType="HotelDTO">
       insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno)
       values( #{empno},#{ename}, 'SALESMAN', 7698, now(),#{sal},0, 30)
-   </insert>
+   </insert>-->
  
    <!-- 사원 삭제-->
-   <delete id="removeByEmpno" parameterType="int" >
-      delete from emp
-      where empno =#{empno}
+   <delete id="removeByRoomNo" parameterType="int" >
+      delete from tb_room
+      where room_no =#{roomNo}
    </delete>
     
    <!--전체 조회 -->
-   <select id="findAll" resultType="HotelDTO">
-      select empno, 
-             ename, 
-             sal, 
-             date_format(hiredate, '%Y') as hiredate, 
-             deptno
-      from emp
-      order by empno desc
+   <select id="findAllRoom" resultType="com.dto.RoomDTO">
+      select room_no, 
+             room_state, 
+             DATE_FORMAT(room_checkin_time,'%Y-%m-%d %h:%i:%s') as room_checkin_time,
+             DATE_FORMAT(room_checkout_time,'%Y-%m-%d %h:%i:%s') as room_checkout_time,
+             room_capacity
+      from tb_room
+      order by room_no desc
+   </select>
+   
+   <select id="findAllGuest" resultType="com.dto.GuestDTO">
+      select room_no, 
+             room_state, 
+             DATE_FORMAT(room_checkin_time,'%Y-%m-%d %h:%i:%s') as room_checkin_time,
+             DATE_FORMAT(room_checkout_time,'%Y-%m-%d %h:%i:%s') as room_checkout_time,
+             room_capacity
+      from tb_room
+      order by room_no desc
    </select>
 </mapper>
 

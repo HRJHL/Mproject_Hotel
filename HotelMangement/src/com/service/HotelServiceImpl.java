@@ -5,41 +5,57 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
-import com.dao.HotelDAO;
-import com.dto.HotelDTO;
+import com.dao.RoomDAO;
+import com.dto.RoomDTO;
 
-public class HotelServiceImpl implements HotelService{
+public class HotelServiceImpl implements HotelService {
 
-	private HotelDAO dao;
-	public void setDao(HotelDAO dao) {
+	private RoomDAO dao;
+
+	public void setDao(RoomDAO dao) {
 		this.dao = dao;
 	}
+
 	@Override
-	public List<HotelDTO> findAll() {
-	 List<HotelDTO> list = null;	
-	 SqlSession session = null;
-      try {
-		session = MySqlSessionFactory.getSession();
-		//DAO 연동코드
-		list = dao.findAll(session);
-      }finally {
-		session.close();
-      }
+	public List<RoomDTO> findAllRoom() {
+		List<RoomDTO> list = null;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			list = dao.findAllRoom(session);
+		} finally {
+			// session.close();
+		}
+
+		for (RoomDTO s : list) {
+			int roomNo = s.getRoom_no();
+			int roomState = s.getRoom_state();
+			int roomCapacity = s.getRoom_capacity();
+			String roomCheckIn = s.getCheckIn();
+			String roomCheckOut = s.getCheckOut();
+
+			System.out.println();
+			System.out.println(s);
+			// System.out.println(
+			// roomNo + " " + roomState + " " + roomCapacity + " " + roomCheckIn + " " +
+			// roomCheckOut);
+		}
 		return list;
 	}
 
 	@Override
-	public int save(HotelDTO dto) {
+	public int save(RoomDTO dto) {
 		int n = 0;
 		SqlSession session = null;
-	      try {
+		try {
 			session = MySqlSessionFactory.getSession();
-			//DAO 연동코드
+			// DAO 연동코드
 			n = dao.save(session, dto);
 			session.commit();
-	      }finally {
+		} finally {
 			session.close();
-	      }
+		}
 		return n;
 	}
 
@@ -47,14 +63,14 @@ public class HotelServiceImpl implements HotelService{
 	public int removeByEmpno(int empno) {
 		int n = 0;
 		SqlSession session = null;
-	      try {
+		try {
 			session = MySqlSessionFactory.getSession();
-			//DAO 연동코드
-			n = dao.removeByEmpno(session, empno);
-session.commit();
-	      }finally {
+			// DAO 연동코드
+			n = dao.removeByRoomNo(session, empno);
+			session.commit();
+		} finally {
 			session.close();
-	      }
+		}
 		return n;
 	}
 

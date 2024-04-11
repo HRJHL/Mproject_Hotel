@@ -8,7 +8,7 @@
   <properties resource="com/config/jdbc.properties"></properties>
   <!-- DTO 별칭-->
   <typeAliases>
-    <typeAlias type="com.dto.EmpDTO"  alias="EmpDTO"/>
+    <typeAlias type="com.dto.RoomDTO"  alias="RoomDTO"/>
   </typeAliases>
   <environments default="development">
     <environment id="development">
