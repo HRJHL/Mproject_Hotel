@@ -4,5 +4,4 @@ create table tb_guest
 	(GUEST_PNO varchar(20) primary key, M_COUNT int not null, GUEST_NAME varchar(20) not null, STAY_DAYS int not null, CAR_NO varchar(10) default null, ROOM_NO int, constraint foreign key(ROOM_NO) references tb_room(ROOM_NO));
 create table tb_room_service
 	(BREAKFAST_YN varchar(1) not null, CLEANING_YN varchar(1) not null, DELIVERY_YN varchar(1) not null, ROOM_NO int, constraint foreign key(ROOM_NO) references tb_room(ROOM_NO));
-    
 create table hotel (PASSWD varchar(20) primary key default '0000');
