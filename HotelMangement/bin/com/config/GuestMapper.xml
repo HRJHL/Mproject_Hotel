@@ -12,7 +12,7 @@
              guest_name, 
              stay_days, 
              parking_yn,
-             room_no,
+             room_no
              
       from tb_guest
       order by guest_pno desc

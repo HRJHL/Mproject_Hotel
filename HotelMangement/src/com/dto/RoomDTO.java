@@ -1,0 +1,60 @@
+package com.dto;
+
+public class RoomDTO {
+
+	
+	int room_no;
+	int room_state;
+	int room_capacity;
+	String room_checkin_time;
+	String room_checkout_time;
+	
+	public RoomDTO() {}  // 기본  생성자 필수 (**************)
+
+	public RoomDTO(int room_no, int room_state, int room_capacity, String room_checkin_time, String room_checkout_time) {
+	    this.room_no = room_no;
+	    this.room_state = room_state;
+	    this.room_capacity = room_capacity;
+	    this.room_checkin_time = room_checkin_time;
+	    this.room_checkout_time = room_checkout_time;
+	}
+
+	public int getRoom_state() {
+	    return room_state;
+	}
+
+	public void setRoom_state(int room_state) {
+	    this.room_state = room_state;
+	}
+
+	public int getRoom_capacity() {
+	    return room_capacity;
+	}
+
+	public void setRoom_capacity(int room_capacity) {
+	    this.room_capacity = room_capacity;
+	}
+
+	public String getRoom_checkin_time() {
+	    return room_checkin_time;
+	}
+
+	public void setRoom_checkin_time(String room_checkin_time) {
+	    this.room_checkin_time = room_checkin_time;
+	}
+
+	public String getRoom_checkout_time() {
+	    return room_checkout_time;
+	}
+
+	public void setRoom_checkout_time(String room_checkout_time) {
+	    this.room_checkout_time = room_checkout_time;
+	}
+
+	@Override
+	public String toString() {
+	    return "RoomDTO [room_no=" + room_no 
+	            + ", room_state=" + room_state + ", room_capacity=" + room_capacity 
+	            + ", room_checkin_time=" + room_checkin_time + ", room_checkout_time=" + room_checkout_time + "]";
+	}
+}

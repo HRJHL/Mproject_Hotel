@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.config.RoomSMapper">
+    
+   <!--전체 조회 -->
+   <select id="find" resultType="RoomSDTO">
+      select breakfast_yn, 
+             cleaning_yn, 
+             delivery_yn, 
+             room_no
+             
+      from tb_room_service
+      order by room_no desc
+   </select>
+</mapper>
+

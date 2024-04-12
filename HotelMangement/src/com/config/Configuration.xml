@@ -9,6 +9,8 @@
   <!-- DTO 별칭-->
   <typeAliases>
     <typeAlias type="com.dto.GuestDTO"  alias="GuestDTO"/>
+    <typeAlias type="com.dto.RoomDTO"  alias="RoomDTO"/>
+    <typeAlias type="com.dto.RoomSDTO"  alias="RoomSDTO"/>
   </typeAliases>
   <environments default="development">
     <environment id="development">
