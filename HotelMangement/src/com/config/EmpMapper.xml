@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.config.EmpMapper">
+ 
+   <!-- 사원 저장 -->
+   <insert id="save" parameterType="EmpDTO">
+      insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+      values( #{empno},#{ename}, 'SALESMAN', 7698, now(),#{sal},0, 30)
+   </insert>
+ 
+   <!-- 사원 삭제-->
+   <delete id="removeByEmpno" parameterType="int" >
+      delete from emp
+      where empno =#{empno}
+   </delete>
+    
+   <!--전체 조회 -->
+   <select id="findAll" resultType="EmpDTO">
+      select empno, 
+             ename, 
+             sal, 
+             date_format(hiredate, '%Y') as hiredate, 
+             deptno
+      from emp
+      order by empno desc
+   </select>
+</mapper>
+
