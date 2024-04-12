@@ -5,15 +5,17 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
+import com.dao.GuestDAO;
 import com.dao.RoomDAO;
+import com.dto.GuestDTO;
 import com.dto.RoomDTO;
 
 public class HotelServiceImpl implements HotelService {
 
-	private RoomDAO dao;
+	private RoomDAO roomdao;
 
-	public void setDao(RoomDAO dao) {
-		this.dao = dao;
+	public void setRoomDao(RoomDAO dao) {
+		this.roomdao = dao;
 	}
 
 	@Override
@@ -23,7 +25,7 @@ public class HotelServiceImpl implements HotelService {
 		try {
 			session = MySqlSessionFactory.getSession();
 			// DAO 연동코드
-			list = dao.findAllRoom(session);
+			list = roomdao.findAllRoom(session);
 		} finally {
 			// session.close();
 		}
@@ -51,7 +53,7 @@ public class HotelServiceImpl implements HotelService {
 		try {
 			session = MySqlSessionFactory.getSession();
 			// DAO 연동코드
-			n = dao.saveRoom(session, dto);
+			n = roomdao.saveRoom(session, dto);
 			session.commit();
 		} finally {
 			session.close();
@@ -60,13 +62,75 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public int removeByEmpno(int empno) {
+	public int removeByRoomNo(int roomNo) {
 		int n = 0;
 		SqlSession session = null;
 		try {
 			session = MySqlSessionFactory.getSession();
 			// DAO 연동코드
-			n = dao.removeByRoomNo(session, empno);
+			n = roomdao.removeByRoomNo(session, roomNo);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
+
+	private GuestDAO guestdao;
+
+	public void setGuestDao(GuestDAO dao) {
+		this.guestdao = dao;
+	}
+
+	@Override
+	public List<GuestDTO> findAllGuest() {
+		List<GuestDTO> list = null;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			list = guestdao.findAllGuest(session);
+		} finally {
+			// session.close();
+		}
+
+		for (GuestDTO s : list) {
+			int roomNo = s.getRoom_no();
+			String guestPno = s.getGuest_pno();
+			int mCount = s.getM_count();
+			String parkingYn = s.getParking_yn();
+			int stayDays = s.getStay_days();
+			String guestName = s.getGuest_name();
+
+			System.out.println();
+			System.out.println(s);
+		}
+		return list;
+	}
+
+	@Override
+	public int saveGuest(GuestDTO dto) {
+		int n = 0;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			n = guestdao.saveGuest(session, dto);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
+
+	@Override
+	public int removeByGuestPno(int guestPno) {
+		int n = 0;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			n = guestdao.removeByGuestPno(session, guestPno);
 			session.commit();
 		} finally {
 			session.close();
