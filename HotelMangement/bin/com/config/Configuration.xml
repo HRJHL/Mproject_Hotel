@@ -26,6 +26,8 @@
   </environments>
   <mappers>
     <mapper resource="com/config/GuestMapper.xml"/>
+    <mapper resource="com/config/RoomMapper.xml"/>
+    <mapper resource="com/config/RoomSMapper.xml"/>
   </mappers>
 </configuration>
 
