@@ -12,17 +12,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.dao.EmpDAO;
-import com.dto.EmpDTO;
-import com.service.EmpService;
-import com.service.EmpServiceImpl;
+import com.dao.GuestDAO;
+import com.dto.GuestDTO;
+import com.service.GuestService;
+import com.service.GuestServiceImpl;
 
 public class JComponent04_JTextField extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tfEmpno;
-	private JTextField tfEname;
-	private JTextField tfSal;
+	private JTextField tfGno;
+	private JTextField tfGname;
+	private JTextField tfGsal;
 	JButton btnSave;
 	/**
 	 * Launch the application.
@@ -52,32 +52,32 @@ public class JComponent04_JTextField extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		tfEmpno = new JTextField();
-		tfEmpno.setBounds(86, 54, 116, 21);
-		contentPane.add(tfEmpno);
-		tfEmpno.setColumns(10);
+		tfGno = new JTextField();
+		tfGno.setBounds(86, 54, 116, 21);
+		contentPane.add(tfGno);
+		tfGno.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("사원번호");
+		JLabel lblNewLabel = new JLabel("손님 번호");
 		lblNewLabel.setBounds(12, 57, 57, 15);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("사원명");
+		JLabel lblNewLabel_1 = new JLabel("손님명");
 		lblNewLabel_1.setBounds(12, 88, 57, 15);
 		contentPane.add(lblNewLabel_1);
 		
-		tfEname = new JTextField();
-		tfEname.setColumns(10);
-		tfEname.setBounds(86, 85, 116, 21);
-		contentPane.add(tfEname);
+		tfGname = new JTextField();
+		tfGname.setColumns(10);
+		tfGname.setBounds(86, 85, 116, 21);
+		contentPane.add(tfGname);
 		
-		JLabel lblNewLabel_2 = new JLabel("SAL");
+		JLabel lblNewLabel_2 = new JLabel("세일");
 		lblNewLabel_2.setBounds(12, 125, 57, 15);
 		contentPane.add(lblNewLabel_2);
 		
-		tfSal = new JTextField();
-		tfSal.setColumns(10);
-		tfSal.setBounds(86, 122, 116, 21);
-		contentPane.add(tfSal);
+		tfGsal = new JTextField();
+		tfGsal.setColumns(10);
+		tfGsal.setBounds(86, 122, 116, 21);
+		contentPane.add(tfGsal);
 		
 		btnSave = new JButton("저장");
 		btnSave.setBounds(39, 179, 97, 23);
@@ -88,23 +88,12 @@ public class JComponent04_JTextField extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String empno = tfEmpno.getText();
-				String ename = tfEname.getText();
-				String sal = tfSal.getText();
+				String guest_pno = tfGno.getText();
+				String guest_name = tfGname.getText();
+				String parking_yn = tfGsal.getText();
 				
-				System.out.println(empno+"\t"+ename+"\t"+sal);
+				System.out.println(guest_pno+"\t"+guest_name+"\t"+parking_yn);
 				
-				EmpDTO dto = new EmpDTO();
-				dto.setEmpno(Integer.parseInt(empno));
-				dto.setEname(ename);
-				dto.setSal(Integer.parseInt(sal));
-				
-				EmpService service = new EmpServiceImpl();
-				service.setDao(new EmpDAO());
-				int n = service.save(dto);
-				System.out.println(n+"개가 저장됨");
-				JOptionPane.showInternalMessageDialog(null, n+"개가 저장됨",
-			             "저장", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
