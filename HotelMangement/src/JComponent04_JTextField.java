@@ -92,7 +92,6 @@ public class JComponent04_JTextField extends JFrame {
 		btnSave.setBounds(39, 179, 97, 23);
 		contentPane.add(btnSave);
 
-		// button �씠踰ㅽ듃 泥섎━
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -127,7 +126,7 @@ public class JComponent04_JTextField extends JFrame {
 				dto.setCheckOut(checkOutDate);
 
 				HotelService service = new HotelServiceImpl();
-				service.setDao(new RoomDAO());
+				service.setRoomDao(new RoomDAO());
 				service.findAllRoom();
 				int n = service.saveRoom(dto);
 				System.out.println(n + "개가 저장됨");
