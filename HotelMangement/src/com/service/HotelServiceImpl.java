@@ -98,7 +98,7 @@ public class HotelServiceImpl implements HotelService {
 			int roomNo = s.getRoom_no();
 			String guestPno = s.getGuest_pno();
 			int mCount = s.getM_count();
-			String parkingYn = s.getParking_yn();
+			String carNo = s.getCar_no();
 			int stayDays = s.getStay_days();
 			String guestName = s.getGuest_name();
 
