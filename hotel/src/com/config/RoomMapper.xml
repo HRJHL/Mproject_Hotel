@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.config.RoomMapper">
+     <!-- 사원 저장 -->
+   <insert id="save2" parameterType="RoomDTO">
+      insert into tb_room(room_no,room_state,room_capacity,room_checkin_time,room_checkout_time)
+      values( #{room_no},1,#{room_capacity},now(),now())
+   </insert>
+   <!--전체 조회 -->
+   <select id="All" resultType="RoomDTO">
+      select room_no, 
+             room_state, 
+             room_capacity, 
+             room_checkin_time, 
+             room_checkout_time
+             
+      from tb_room
+      order by room_no desc
+   </select>
+</mapper>
+
