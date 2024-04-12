@@ -32,8 +32,3 @@ sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	
 	
 }
-
-
-
-
-

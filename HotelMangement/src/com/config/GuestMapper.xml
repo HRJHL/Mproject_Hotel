@@ -5,6 +5,12 @@
   
 <mapper namespace="com.config.GuestMapper">
     
+    <!-- 사원 저장 -->
+   <insert id="save" parameterType="GuestDTO">
+      insert into tb_guest(guest_pno,m_count,guest_name,stay_days,parking_yn,room_no)
+      values( #{guest_pno},1, #{guest_name}, 7698, "1",#{room_no})
+   </insert>
+   
    <!--전체 조회 -->
    <select id="findAll" resultType="GuestDTO">
       select guest_pno, 
