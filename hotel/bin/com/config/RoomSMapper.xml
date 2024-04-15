@@ -5,12 +5,25 @@
   
 <mapper namespace="com.config.RoomSMapper">
      <!-- 사원 저장 -->
-   <insert id="save3" parameterType="RoomSDTO">
-      insert into tb_guest(breakfast_yn,cleaning_yn,delivery_yn,room_no)
+   <insert id="save_S" parameterType="RoomSDTO">
+      insert into tb_room_service(breakfast_yn,cleaning_yn,delivery_yn,room_no)
       values( #{breakfast_yn},#{cleaning_yn}, #{delivery_yn},#{room_no})
    </insert>
+   
+   <delete id="remove_S" parameterType="int" >
+      delete from tb_room_service
+      where breakfast_yn =#{breakfast_yn}
+   </delete>
+   
+   <!-- 수정 -->
+     <update id="update_S" parameterType="RoomSDTO" >
+        update tb_room_service
+        set breakfast_yn = #{breakfast_yn}
+        where room_no=#{room_no}
+     </update>
+     
    <!--전체 조회 -->
-   <select id="find" resultType="RoomSDTO">
+   <select id="find_S" resultType="RoomSDTO">
       select breakfast_yn, 
              cleaning_yn, 
              delivery_yn, 
