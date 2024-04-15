@@ -23,6 +23,6 @@ public class RoomSDAO {
 	}
 	//update
 	public int update_S(SqlSession session, RoomSDTO dto) {
-		return session.insert("com.config.RoomSMapper.update_S", dto);
+		return session.update("com.config.RoomSMapper.update_S", dto);
 	}
 }

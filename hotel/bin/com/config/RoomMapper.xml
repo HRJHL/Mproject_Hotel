@@ -18,7 +18,10 @@
    <!-- 수정 -->
      <update id="update_R" parameterType="RoomDTO" >
         update tb_room
-        set room_state = #{room_state}
+        room_state = #{room_state} ,
+        room_capacity = #{room_capacity} , 
+        room_checkin_time = #{room_checkin_time} ,
+        room_checkout_time = #room_checkout_time}
         where room_no=#{room_no}
      </update>
      

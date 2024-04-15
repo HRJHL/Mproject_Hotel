@@ -1,6 +1,7 @@
 package com;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +9,11 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -288,5 +291,76 @@ public class Master_MK1 {
 		        }
 		    }
 		});
+		
+		Update_Rm.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) { // Ensure a row is selected
+		            // Get the values from the selected row
+		            String room_no = table.getValueAt(selectedRow, 0).toString();
+		            String roomState = table.getValueAt(selectedRow, 1).toString();
+		            String capacity = table.getValueAt(selectedRow, 2).toString();
+		            String checkIn = table.getValueAt(selectedRow, 3).toString();
+		            String checkOut = table.getValueAt(selectedRow, 4).toString();
+		            // Print the values to console
+		            System.out.println("Selected Room:");
+		            System.out.println("Room Number: " + room_no);
+		            
+		            // Create a new JFrame for the update popup
+		            JFrame updateFrame = new JFrame("Update Room");
+		            updateFrame.setSize(400, 300);
+		            
+		            // Create text fields for each column
+		            JTextField capacityField = new JTextField(10);
+		            JTextField stateField = new JTextField(10);
+		            JTextField checkinField = new JTextField(10);
+		            JTextField checkoutField = new JTextField(10);
+		            
+		            // Set default values to text fields
+		            capacityField.setText(capacity);
+		            stateField.setText(roomState);
+		            checkinField.setText(checkIn);
+		            checkoutField.setText(checkOut);
+		            
+		            // Add text fields to the frame
+		            updateFrame.add(new JLabel("Capacity:"));
+		            updateFrame.add(capacityField);
+		            updateFrame.add(new JLabel("State:"));
+		            updateFrame.add(stateField);
+		            updateFrame.add(new JLabel("Check-In Time:"));
+		            updateFrame.add(checkinField);
+		            updateFrame.add(new JLabel("Check-Out Time:"));
+		            updateFrame.add(checkoutField);
+		            
+		            // Create a button to confirm update
+		            JButton updateButton = new JButton("Update");
+		            updateButton.addActionListener(new ActionListener() {
+		                @Override
+		                public void actionPerformed(ActionEvent e) {
+		                    // Get values from text fields
+		                    String newCapacity = capacityField.getText();
+		                    String newState = stateField.getText();
+		                    String newCheckIn = checkinField.getText();
+		                    String newCheckOut = checkoutField.getText();
+		                    
+		                    // Perform update operation using values
+		                    // updateRoom(selectedRow, newCapacity, newState, newCheckIn, newCheckOut);
+		                    
+		                    // Close the update frame
+		                    updateFrame.dispose();
+		                }
+		            });
+		            
+		            // Add update button to the frame
+		            updateFrame.add(updateButton);
+		            
+		            // Set layout for the frame
+		            updateFrame.setLayout(new FlowLayout());
+		            updateFrame.setVisible(true);
+		        }
+		    }
+		});
+
 	}
 }

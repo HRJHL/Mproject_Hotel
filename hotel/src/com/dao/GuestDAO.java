@@ -26,6 +26,6 @@ public class GuestDAO {
 	
 	//update
 	public int update_G(SqlSession session, GuestDTO dto) {
-		return session.insert("com.config.GuestMapper.update_G", dto);
+		return session.update("com.config.GuestMapper.update_G", dto);
 	}
 }

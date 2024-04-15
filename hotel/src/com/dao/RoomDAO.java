@@ -40,6 +40,6 @@ public class RoomDAO {
 	
 	//update
 		public int update_R(SqlSession session, RoomDTO dto) {
-			return session.insert("com.config.RoomMapper.update_R", dto);
+			return session.update("com.config.RoomMapper.update_R", dto);
 		}
 }
