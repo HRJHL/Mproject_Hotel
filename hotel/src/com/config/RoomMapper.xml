@@ -57,7 +57,7 @@
     ]]>
 </select>
    
-   <select id="find_R12" resultType="RoomDTO">
+   <select id="find_R56" resultType="RoomDTO">
     <![CDATA[
         select room_no, 
                room_state, 

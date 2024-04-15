@@ -101,12 +101,12 @@ public class Master_MK1 {
 		JButton OButton = new JButton("1~2인실");
 		OButton.setBounds(31, 10, 111, 32);
 		RPanel.add(OButton);
-		
-		JButton TButton = new JButton("2~4인실");
+
+		JButton TButton = new JButton("3~4인실");
 		TButton.setBounds(166, 10, 111, 32);
 		RPanel.add(TButton);
 
-		JButton FButton = new JButton("4~6인실");
+		JButton FButton = new JButton("5~6인실");
 		FButton.setBounds(301, 10, 111, 32);
 		RPanel.add(FButton);
 
@@ -142,34 +142,6 @@ public class Master_MK1 {
 		});
 		RPanel.add(BackButtonO);
 
-		OButton.addActionListener(new ActionListener() {
-			@Override
-		    public void actionPerformed(ActionEvent e) {
-		        DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-		        int room_no;
-		        int room_state;
-		        int room_capacity;
-		        String room_checkin_time;
-		        String room_checkout_time;
-
-		        RoomService service = new RoomServiceImpl(); // 수정된 부분
-		        service.setDao(new RoomDAO());
-
-		        List<RoomDTO> list = service.find_R12(); // 수정된 부분
-		        for (RoomDTO s : list) {
-		            room_no = s.getRoom_no();
-		            room_state = s.getRoom_state();
-		            room_capacity = s.getRoom_capacity();
-		            room_checkin_time = s.getRoom_checkin_time();
-		            room_checkout_time = s.getRoom_checkout_time();
-		            String[] row = { Integer.toString(room_no), Integer.toString(room_state),
-		                    Integer.toString(room_capacity), room_checkin_time, room_checkout_time };
-		            model.addRow(row);
-		        }
-		    }
-		});
-		
 		Panel CPanel_1 = new Panel();
 		CPanel_1.setBounds(0, 0, 436, 263);
 		frame.getContentPane().add(CPanel_1);
@@ -209,5 +181,89 @@ public class Master_MK1 {
 			}
 		});
 		CPanel_1.add(BackButtonT);
+
+		OButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+				int room_no;
+				int room_state;
+				int room_capacity;
+				String room_checkin_time;
+				String room_checkout_time;
+
+				RoomService service = new RoomServiceImpl();
+				service.setDao(new RoomDAO());
+				List<RoomDTO> list = service.find_R12();
+				for (RoomDTO s : list) {
+					room_no = s.getRoom_no();
+					room_state = s.getRoom_state();
+					room_capacity = s.getRoom_capacity();
+					room_checkin_time = s.getRoom_checkin_time();
+					room_checkout_time = s.getRoom_checkout_time();
+					String[] row = { Integer.toString(room_no), Integer.toString(room_state),
+							Integer.toString(room_capacity), room_checkin_time, room_checkout_time };
+					model.addRow(row);
+				}
+
+			}
+		});
+
+		TButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+				int room_no;
+				int room_state;
+				int room_capacity;
+				String room_checkin_time;
+				String room_checkout_time;
+
+				RoomService service = new RoomServiceImpl();
+				service.setDao(new RoomDAO());
+				List<RoomDTO> list = service.find_R34();
+				for (RoomDTO s : list) {
+					room_no = s.getRoom_no();
+					room_state = s.getRoom_state();
+					room_capacity = s.getRoom_capacity();
+					room_checkin_time = s.getRoom_checkin_time();
+					room_checkout_time = s.getRoom_checkout_time();
+					String[] row = { Integer.toString(room_no), Integer.toString(room_state),
+							Integer.toString(room_capacity), room_checkin_time, room_checkout_time };
+					model.addRow(row);
+				}
+
+			}
+		});
+
+		FButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+				int room_no;
+				int room_state;
+				int room_capacity;
+				String room_checkin_time;
+				String room_checkout_time;
+
+				RoomService service = new RoomServiceImpl();
+				service.setDao(new RoomDAO());
+				List<RoomDTO> list = service.find_R56();
+				for (RoomDTO s : list) {
+					room_no = s.getRoom_no();
+					room_state = s.getRoom_state();
+					room_capacity = s.getRoom_capacity();
+					room_checkin_time = s.getRoom_checkin_time();
+					room_checkout_time = s.getRoom_checkout_time();
+					String[] row = { Integer.toString(room_no), Integer.toString(room_state),
+							Integer.toString(room_capacity), room_checkin_time, room_checkout_time };
+					model.addRow(row);
+				}
+
+			}
+		});
 	}
 }
