@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -114,7 +115,9 @@ public class Master_MK1 {
 		table = new JTable(model);
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.setBounds(31, 62, 381, 119);
-		RPanel.add(table);
+		JScrollPane scrolledTable = new JScrollPane(table); // 수정된 부분
+		scrolledTable.setBounds(31, 62, 381, 119); // 수정된 부분
+		RPanel.add(scrolledTable); // 수정된 부분
 
 		JButton Create_Rm = new JButton("생성");
 		Create_Rm.setBounds(31, 204, 91, 23);
