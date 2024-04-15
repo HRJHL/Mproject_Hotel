@@ -265,5 +265,28 @@ public class Master_MK1 {
 
 			}
 		});
+		
+		Delete_Rm.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) { // Ensure a row is selected
+		            // Get the values from the selected row
+		            String room_no = table.getValueAt(selectedRow, 0).toString();
+		            // Print the values to console
+		            System.out.println("선택된 방");
+		            System.out.println("Room Number: " + room_no);
+		            
+		            RoomDTO dto = new RoomDTO();
+		            dto.setRoom_no(Integer.parseInt(room_no));
+		            
+		            RoomService service = new RoomServiceImpl();
+		            service.setDao(new RoomDAO());
+		            int n = service.remove_R(Integer.parseInt(room_no));
+		            System.out.println(n+" 개가 삭제됨.");
+		            
+		        }
+		    }
+		});
 	}
 }
