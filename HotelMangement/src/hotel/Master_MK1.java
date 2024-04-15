@@ -4,11 +4,19 @@ import java.awt.EventQueue;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
+import com.dao.RoomDAO;
+import com.dto.RoomDTO;
+import com.service.RoomService;
+import com.service.RoomServiceImpl;
 
 public class Master_MK1 {
 
@@ -101,7 +109,10 @@ public class Master_MK1 {
 		FButton.setBounds(301, 10, 111, 32);
 		RPanel.add(FButton);
 
-		table = new JTable();
+		String header[] = { "방 번호", "현재 상태", "수용 가능 인원", "체크인", "체크아웃" };
+		DefaultTableModel model = new DefaultTableModel(header, 0);
+		table = new JTable(model);
+		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.setBounds(31, 62, 381, 119);
 		RPanel.add(table);
 
@@ -167,5 +178,32 @@ public class Master_MK1 {
 			}
 		});
 		CPanel_1.add(BackButtonT);
+
+		OButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int room_no;
+				int room_state;
+				int room_capacity;
+				String room_checkin_time;
+				String room_checkout_time;
+
+				RoomService service = new RoomServiceImpl();
+				service.setDao(new RoomDAO());
+				List<RoomDTO> list = service.findAllRoom();
+				for (RoomDTO s : list) {
+					room_no = s.getRoom_no();
+					room_state = s.getRoom_state();
+					room_capacity = s.getRoom_capacity();
+					room_checkin_time = s.getRoom_checkin_time();
+					room_checkout_time = s.getRoom_checkout_time();
+					String[] row = { Integer.toString(room_no), Integer.toString(room_state),
+							Integer.toString(room_capacity), room_checkin_time, room_checkout_time };
+					model.addRow(row);
+				}
+
+			}
+		});
 	}
 }
