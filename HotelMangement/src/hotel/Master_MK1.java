@@ -182,6 +182,7 @@ public class Master_MK1 {
 		OButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
 
 				int room_no;
 				int room_state;
