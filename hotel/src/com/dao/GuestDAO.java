@@ -15,22 +15,22 @@ public class GuestDAO {
 
 	// select
 	public List<GuestDTO> findAllGuest(SqlSession session) {
-		List<GuestDTO> list = session.selectList("com.config.HotelMapper.findAllGuest");
+		List<GuestDTO> list = session.selectList("com.config.GuestMapper.findAllGuest");
 		return list;
 	}
 
 	public List<GuestDTO> findGuestByPno(SqlSession session) {
-		List<GuestDTO> list = session.selectList("com.config.HotelMapper.findAllGuest");
+		List<GuestDTO> list = session.selectList("com.config.GuestMapper.findAllGuest");
 		return list;
 	}
 
 	// save
 	public int saveGuest(SqlSession session, GuestDTO dto) {
-		return session.insert("com.config.HotelMapper.saveGuest", dto);
+		return session.insert("com.config.GuestMapper.saveGuest", dto);
 	}
 
 	// remove
 	public int removeByGuestPno(SqlSession session, int roomNo) {
-		return session.delete("com.config.HotelMapper.removeByGuestPno", roomNo);
+		return session.delete("com.config.GuestMapper.removeByGuestPno", roomNo);
 	}
 }

@@ -13,24 +13,26 @@
    
    <!--전체 조회 -->
    <select id="findAll" resultType="GuestDTO">
-      select guest_pno, 
+      select GUEST_PNO, 
              m_count, 
              guest_name, 
              stay_days, 
-             parking_yn,
+             car_no,
              room_no
              
       from tb_guest
-      order by guest_pno desc
+      order by room_no
    </select>
    
    <select id="findAllGuest" resultType="com.dto.GuestDTO">
-      select room_no, 
-             guest_pno, 
-             m_count, guest_name, stay_days, car_no
+      select guest_pno, 
+             m_count, 
+             guest_name,
+             stay_days,
+             car_no,
+             room_no
       from tb_guest
-      order by room_no desc
-	</select>
+   </select>
 	
 	<select id="findGuestByPno" parameterType="String" resultType="com.dto.GuestDTO">
       select room_no, 

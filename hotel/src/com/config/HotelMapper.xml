@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.config.GuestMapper">
+<mapper namespace="com.config.HotelMapper">
     
    <update id="updatePasswd" parameterType="String"> 
 	  update hotel set passwd = #{passwd}

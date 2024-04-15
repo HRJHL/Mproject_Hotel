@@ -1,6 +1,5 @@
 insert into tb_guest values('010-1111-2222', 1, '김철수', 3, '6548', 301);
 insert into tb_guest values('010-1212-3155', 1, '한아름', 3, null, 401);
-insert into tb_guest values('010-4581-6548', 3, '이보미', 3, null, 301);
 insert into tb_guest values('010-4567-1231', 1, '장민수', 3, '4567', 502);
 insert into tb_guest values('010-3544-4547', 4, '손승헌', 3, null, 503);
 insert into tb_guest values('010-1231-5468', 3, '최민수', 3, '5482', 504);
