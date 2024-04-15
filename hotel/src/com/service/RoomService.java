@@ -14,5 +14,9 @@ public interface RoomService {
 	public List<RoomDTO> findAllRoom();
 
 	public List<RoomDTO> findRoom_12();
+
+	public List<RoomDTO> findRoom_34();
+
+	public List<RoomDTO> findRoom_56();
 	// public int removeByEmpno(int empno);
 }

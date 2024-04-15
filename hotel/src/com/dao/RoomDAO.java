@@ -25,6 +25,18 @@ public class RoomDAO {
 		return list;
 	}
 
+	// select
+	public List<RoomDTO> findRoom_34(SqlSession session) {
+		List<RoomDTO> list = session.selectList("com.config.RoomMapper.findRoom_34");
+		return list;
+	}
+
+	// select
+	public List<RoomDTO> findRoom_56(SqlSession session) {
+		List<RoomDTO> list = session.selectList("com.config.RoomMapper.findRoom_56");
+		return list;
+	}
+
 	public List<RoomDTO> findRoomByCapacity(SqlSession session) {
 		List<RoomDTO> list = session.selectList("com.config.RoomMapper.findRoomByCapacity");
 		return list;

@@ -61,4 +61,34 @@ public class RoomServiceImpl implements RoomService {
 		return list;
 	}
 
+	@Override
+	public List<RoomDTO> findRoom_34() {
+		List<RoomDTO> list = null;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			list = dao.findRoom_34(session);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public List<RoomDTO> findRoom_56() {
+		List<RoomDTO> list = null;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			list = dao.findRoom_56(session);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
 }
