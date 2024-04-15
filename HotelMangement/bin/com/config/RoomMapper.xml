@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.config.RoomMapper">
+     <!-- 사원 저장 -->
+   <insert id="save2" parameterType="RoomDTO">
+      insert into tb_room(room_no,room_state,room_capacity,room_checkin_time,room_checkout_time)
+      values( #{room_no},1,#{room_capacity},now(),now())
+   </insert>
+   <!--전체 조회 -->
+   <select id="All" resultType="RoomDTO">
+      select room_no, 
+             room_state, 
+             room_capacity, 
+             room_checkin_time, 
+             room_checkout_time
+             
+      from tb_room
+      order by room_no desc
+   </select>
+   
+   <!-- 방 저장 -->
+   <insert id="saveRoom" parameterType="RoomDTO">
+      insert into tb_room values( #{room_no},#{room_state}, #{room_capacity}, #{room_checkin_time},  #{room_checkout_time} )
+   </insert>
+ 
+   <!-- 사원 삭제-->
+   <delete id="removeByRoomNo" parameterType="int" >
+      delete from tb_room
+      where room_no =#{roomNo}
+   </delete>
+    
+   <!--전체 방 조회 -->
+   <select id="findAllRoom" resultType="com.dto.RoomDTO">
+      select room_no, 
+             room_state, 
+             DATE_FORMAT(room_checkin_time,'%Y-%m-%d %h:%i:%s') as room_checkin_time,
+             DATE_FORMAT(room_checkout_time,'%Y-%m-%d %h:%i:%s') as room_checkout_time,
+             room_capacity
+      from tb_room
+      order by room_no
+   </select>
+   
+   <select id="findRoom_12" resultType="com.dto.RoomDTO">
+      select room_no, 
+             room_state, 
+             DATE_FORMAT(room_checkin_time,'%Y-%m-%d %h:%i:%s') as room_checkin_time,
+             DATE_FORMAT(room_checkout_time,'%Y-%m-%d %h:%i:%s') as room_checkout_time,
+             room_capacity
+      from tb_room where room_capacity between 1 and 2
+      order by room_no
+   </select>
+   
+   <select id="findRoom_34" resultType="com.dto.RoomDTO">
+      select room_no, 
+             room_state, 
+             DATE_FORMAT(room_checkin_time,'%Y-%m-%d %h:%i:%s') as room_checkin_time,
+             DATE_FORMAT(room_checkout_time,'%Y-%m-%d %h:%i:%s') as room_checkout_time,
+             room_capacity
+      from tb_room where room_capacity between 3 and 4
+      order by room_no
+   </select>
+   
+   <select id="findRoom_56" resultType="com.dto.RoomDTO">
+      select room_no, 
+             room_state, 
+             DATE_FORMAT(room_checkin_time,'%Y-%m-%d %h:%i:%s') as room_checkin_time,
+             DATE_FORMAT(room_checkout_time,'%Y-%m-%d %h:%i:%s') as room_checkout_time,
+             room_capacity
+      from tb_room where room_capacity between 5 and 6
+      order by room_no
+   </select>
+   
+   <select id="findRoomByCapacity" parameterType="String" resultType="com.dto.RoomDTO">
+      select room_no, 
+             room_state, 
+             DATE_FORMAT(room_checkin_time,'%Y-%m-%d %h:%i:%s') as room_checkin_time,
+             DATE_FORMAT(room_checkout_time,'%Y-%m-%d %h:%i:%s') as room_checkout_time,
+             room_capacity
+      from tb_room where room_capacity = #{roomCapacity}
+      order by room_no
+   </select>
+</mapper>
+
