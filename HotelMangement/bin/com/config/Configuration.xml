@@ -8,7 +8,9 @@
   <properties resource="com/config/jdbc.properties"></properties>
   <!-- DTO 별칭-->
   <typeAliases>
-    <typeAlias type="com.dto.EmpDTO"  alias="EmpDTO"/>
+    <typeAlias type="com.dto.GuestDTO"  alias="GuestDTO"/>
+    <typeAlias type="com.dto.RoomDTO"  alias="RoomDTO"/>
+    <typeAlias type="com.dto.RoomSDTO"  alias="RoomSDTO"/>
   </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -23,8 +25,9 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="com/config/HotelMapper.xml"/>
+    <mapper resource="com/config/GuestMapper.xml"/>
+    <mapper resource="com/config/RoomMapper.xml"/>
+    <mapper resource="com/config/RoomSMapper.xml"/>
   </mappers>
 </configuration>
-
 
