@@ -187,6 +187,8 @@ public class Master_MK1 {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 
+				model.setRowCount(0);
+
 				int room_no;
 				int room_state;
 				int room_capacity;
@@ -215,6 +217,8 @@ public class Master_MK1 {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 
+				model.setRowCount(0);
+
 				int room_no;
 				int room_state;
 				int room_capacity;
@@ -242,6 +246,8 @@ public class Master_MK1 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+				model.setRowCount(0);
 
 				int room_no;
 				int room_state;
