@@ -18,19 +18,60 @@ public class RoomServiceImpl implements RoomService{
 	}
 	
 	@Override
-	public List<RoomDTO> find_R() {
+	public List<RoomDTO> find_Q() {
 	 List<RoomDTO> list = null;	
 	 SqlSession session = null;
       try {
 		session = MySqlSessionFactory.getSession();
 		//DAO 연동코드
-		list = dao.find_R(session);
+		list = dao.find_Q(session);
       }finally {
 		session.close();
       }
 		return list;
 	}
 	
+	@Override
+	public List<RoomDTO> find_R12() {
+	 List<RoomDTO> list = null;	
+	 SqlSession session = null;
+      try {
+		session = MySqlSessionFactory.getSession();
+		//DAO 연동코드
+		list = dao.find_R12(session);
+      }finally {
+		session.close();
+      }
+		return list;
+	}
+	
+	@Override
+	public List<RoomDTO> find_R34() {
+	 List<RoomDTO> list = null;	
+	 SqlSession session = null;
+      try {
+		session = MySqlSessionFactory.getSession();
+		//DAO 연동코드
+		list = dao.find_R34(session);
+      }finally {
+		session.close();
+      }
+		return list;
+	}
+	
+	@Override
+	public List<RoomDTO> find_R56() {
+	 List<RoomDTO> list = null;	
+	 SqlSession session = null;
+      try {
+		session = MySqlSessionFactory.getSession();
+		//DAO 연동코드
+		list = dao.find_R56(session);
+      }finally {
+		session.close();
+      }
+		return list;
+	}
 	@Override
 	public int save_R(RoomDTO dto) {
 		int n = 0;

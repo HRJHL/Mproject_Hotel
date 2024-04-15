@@ -6,12 +6,29 @@ import com.dto.RoomDTO;
 
 public class RoomDAO {
 	
-	public List<RoomDTO> find_R(SqlSession session){
+	public List<RoomDTO> find_Q(SqlSession session){
 		List<RoomDTO> list = 
-				session.selectList("com.config.RoomMapper.find_R");
+				session.selectList("com.config.RoomMapper.find_Q");
 		return list;
 	}
 	
+	public List<RoomDTO> find_R12(SqlSession session){
+		List<RoomDTO> list = 
+				session.selectList("com.config.RoomMapper.find_R12");
+		return list;
+	}
+	
+	public List<RoomDTO> find_R34(SqlSession session){
+		List<RoomDTO> list = 
+				session.selectList("com.config.RoomMapper.find_R34");
+		return list;
+	}
+	
+	public List<RoomDTO> find_R56(SqlSession session){
+		List<RoomDTO> list = 
+				session.selectList("com.config.RoomMapper.find_R56");
+		return list;
+	}
 	//save
 	public int save_R(SqlSession session, RoomDTO dto) {
 		return session.insert("com.config.RoomMapper.save_R", dto);
