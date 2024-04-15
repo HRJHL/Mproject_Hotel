@@ -60,9 +60,9 @@ public class Master_MK1 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		Panel MPanel = new Panel();
-		Panel RPanel = new Panel();
-		Panel CPanel = new Panel();
+		Panel MPanel = new Panel(); // 메인
+		Panel RPanel = new Panel(); // 방 관리
+		Panel CPanel = new Panel(); // 고객 관리
 		MPanel.setBounds(0, 0, 436, 263);
 		frame.getContentPane().add(MPanel);
 		MPanel.setLayout(null);
@@ -76,9 +76,9 @@ public class Master_MK1 {
 		CButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MPanel.setVisible(false);
 				CPanel.setVisible(true);
-
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
 			}
 		});
 		MPanel.add(CButton);
@@ -136,51 +136,51 @@ public class Master_MK1 {
 		BackButtonO.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
 				RPanel.setVisible(false);
 				MPanel.setVisible(true);
 			}
 		});
 		RPanel.add(BackButtonO);
 
-		Panel CPanel_1 = new Panel();
-		CPanel_1.setBounds(0, 0, 436, 263);
-		frame.getContentPane().add(CPanel_1);
-		CPanel_1.setLayout(null);
+		CPanel.setBounds(0, 0, 436, 263);
+		frame.getContentPane().add(CPanel);
+		CPanel.setLayout(null);
 
 		JButton PCus = new JButton("숙박 고객");
 		PCus.setBounds(35, 10, 152, 31);
-		CPanel_1.add(PCus);
+		CPanel.add(PCus);
 
 		JButton RCus = new JButton("예약 고객");
 		RCus.setBounds(239, 10, 152, 31);
-		CPanel_1.add(RCus);
+		CPanel.add(RCus);
 
 		table_1 = new JTable();
 		table_1.setBounds(35, 51, 356, 90);
-		CPanel_1.add(table_1);
+		CPanel.add(table_1);
 
 		JButton Create_Cu = new JButton("생성");
 		Create_Cu.setBounds(35, 168, 91, 23);
-		CPanel_1.add(Create_Cu);
+		CPanel.add(Create_Cu);
 
 		JButton Update_Cu = new JButton("수정");
 		Update_Cu.setBounds(160, 168, 91, 23);
-		CPanel_1.add(Update_Cu);
+		CPanel.add(Update_Cu);
 
 		JButton Delete_Cu = new JButton("삭제");
 		Delete_Cu.setBounds(285, 168, 91, 23);
-		CPanel_1.add(Delete_Cu);
+		CPanel.add(Delete_Cu);
 
 		JButton BackButtonT = new JButton("첫 화면으로");
 		BackButtonT.setBounds(333, 230, 91, 23);
 		BackButtonT.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CPanel_1.setVisible(false);
+				CPanel.setVisible(false);
 				MPanel.setVisible(true);
 			}
 		});
-		CPanel_1.add(BackButtonT);
+		CPanel.add(BackButtonT);
 
 		OButton.addActionListener(new ActionListener() {
 			@Override
