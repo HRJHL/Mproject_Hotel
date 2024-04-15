@@ -195,7 +195,7 @@ public class Master_MK1 {
 
 				RoomService service = new RoomServiceImpl();
 				service.setDao(new RoomDAO());
-				List<RoomDTO> list = service.findAllRoom();
+				List<RoomDTO> list = service.findRoom_12();
 				for (RoomDTO s : list) {
 					room_no = s.getRoom_no();
 					room_state = s.getRoom_state();

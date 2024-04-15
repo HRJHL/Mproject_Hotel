@@ -43,6 +43,16 @@
       order by room_no
    </select>
    
+   <select id="findRoom_12" resultType="com.dto.RoomDTO">
+      select room_no, 
+             room_state, 
+             DATE_FORMAT(room_checkin_time,'%Y-%m-%d %h:%i:%s') as room_checkin_time,
+             DATE_FORMAT(room_checkout_time,'%Y-%m-%d %h:%i:%s') as room_checkout_time,
+             room_capacity
+      from tb_room where room_capacity between 1 and 2
+      order by room_no
+   </select>
+   
    <select id="findRoomByCapacity" parameterType="String" resultType="com.dto.RoomDTO">
       select room_no, 
              room_state, 

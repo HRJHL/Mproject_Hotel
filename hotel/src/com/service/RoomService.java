@@ -12,5 +12,7 @@ public interface RoomService {
 	public int save2(RoomDTO dto);
 
 	public List<RoomDTO> findAllRoom();
+
+	public List<RoomDTO> findRoom_12();
 	// public int removeByEmpno(int empno);
 }
