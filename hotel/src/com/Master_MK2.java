@@ -108,6 +108,7 @@ public class Master_MK2 {
 				MPanel.setVisible(false);
 				RPanel.setVisible(false);
 				page1.setVisible(false);
+				page2.setVisible(true);
 			}
 		});
 		page1.add(stayBtn);
@@ -121,6 +122,7 @@ public class Master_MK2 {
 				MPanel.setVisible(false);
 				RPanel.setVisible(false);
 				page1.setVisible(false);
+				page2.setVisible(true);
 			}
 		});
 		page1.add(shortBtn);
@@ -134,6 +136,8 @@ public class Master_MK2 {
 				MPanel.setVisible(false);
 				RPanel.setVisible(false);
 				page1.setVisible(false);
+				page2.setVisible(false);
+				page3.setVisible(true);
 			}
 		});
 		page1.add(checkBtn);
@@ -147,6 +151,8 @@ public class Master_MK2 {
 				MPanel.setVisible(false);
 				RPanel.setVisible(false);
 				page1.setVisible(false);
+				page2.setVisible(false);
+				page3.setVisible(true);
 			}
 		});
 		page1.add(extendBtn);
@@ -165,6 +171,34 @@ public class Master_MK2 {
 			}
 		});
 		page1.add(PBackButton);
+		
+		page2.setBounds(0, 0, 436, 263);
+		frame.getContentPane().add(page2);
+		page2.setLayout(null);
+		page2.setVisible(false);
+		
+		JButton p2backButton = new JButton("이전");
+		p2backButton.setBounds(50, 223, 99, 30);
+		p2backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				page2.setVisible(false);
+				page1.setVisible(true);
+			}
+		});
+		page2.add(p2backButton);
+		
+		JButton p2nextButton = new JButton("다음");
+		p2nextButton.setBounds(220, 223, 99, 30);
+		p2nextButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				page2.setVisible(false);
+				page4.setVisible(true);
+			}
+		});
+		page2.add(p2nextButton);
+		
 		
 		HPanel.setBounds(0, 0, 436, 263);
 		frame.getContentPane().add(HPanel);
