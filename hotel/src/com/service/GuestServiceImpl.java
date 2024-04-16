@@ -87,5 +87,19 @@ session.commit();
 	      }
 		return n;
 	}
+	
+	public int update_P(GuestDTO dto) {
+		int n = 0;
+		SqlSession session = null;
+	      try {
+			session = MySqlSessionFactory.getSession();
+			//DAO 연동코드
+			n = dao.update_P(session, dto);
+			session.commit();
+	      }finally {
+			session.close();
+	      }
+		return n;
+	}
 
 }

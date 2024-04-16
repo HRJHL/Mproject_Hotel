@@ -14,7 +14,7 @@
     <!-- 사원 저장 -->
    <insert id="save_P" parameterType="GuestDTO">
       insert into tb_guest(guest_pno,m_count,guest_name,stay_days,car_no,room_no)
-      values( #{guest_pno},#{m_count}, "김학수", 7698, #{car_no},"4")
+      values( #{guest_pno},"2", "이름", #{stay_days}, #{car_no},"4")
    </insert>
    
    <!-- 삭제 -->
@@ -30,6 +30,13 @@
         m_count = #{m_count},
         stay_days = #{stay_days}
         guest_name = #{guest_name},
+        where guest_pno=#{guest_pno}
+     </update>
+     
+     <update id="update_P" parameterType="GuestDTO" >
+        update tb_guest
+        set
+        stay_days = #{stay_days}
         where guest_pno=#{guest_pno}
      </update>
    

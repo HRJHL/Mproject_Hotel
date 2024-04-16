@@ -229,9 +229,9 @@ public class Master_MK2 {
         carNum.setBounds(100, 90, 200, 30);
         page2.add(carNum);
         
-        JTextField timeNum = new JTextField();
-        timeNum.setBounds(100, 130, 200, 30);
-        page2.add(timeNum);
+        JTextField name = new JTextField();
+        name.setBounds(100, 130, 200, 30);
+        page2.add(name);
         
         JLabel label2 = new JLabel("차량 번호:");
         label2.setBounds(30, 50, 100, 30);  // 위치와 크기 설정
@@ -249,29 +249,36 @@ public class Master_MK2 {
 		p2nextButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int selectedRow = tableRoom2.getSelectedRow();
+		        if (selectedRow != -1) { // Ensure a row is selected
+		            // Get the values from the selected row
+		            String room_no = tableRoom2.getValueAt(selectedRow, 0).toString();
+		            String capacity = tableRoom2.getValueAt(selectedRow, 2).toString();
 				page2.setVisible(false);
 				page4.setVisible(true);
 				
 				String guest_pno = phoneNum.getText();
+				String m_count = capacity;
                 String car_no = carNum.getText();
-                String m_count = timeNum.getText();
-                
+                String guest_name = name.getText();
                 
                 GuestDTO dto = new GuestDTO();
 	            dto.setGuest_pno(guest_pno);
-	            dto.setCar_no(car_no);
 	            dto.setM_count(Integer.parseInt(m_count));
+	            dto.setCar_no(car_no);
+	            dto.setGuest_name(guest_name);
+       
 	            
 	            GuestService service = new GuestServiceImpl();
 	            service.setDao(new GuestDAO());
 	            
 	            int n = service.save_P(dto);
 	            System.out.println(n+"업데이트됨.");
-                
+		        }
 			}
 		});
 		page2.add(p2nextButton);
-		
+	
         
 		HPanel.setBounds(0, 0, 436, 263);
 		frame.getContentPane().add(HPanel);

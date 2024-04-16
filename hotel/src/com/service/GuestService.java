@@ -13,4 +13,5 @@ public interface GuestService {
 	public int save_P(GuestDTO dto);
 	public int remove_G(int guest_pno);
 	public int update_G(GuestDTO dto);
+	public int update_P(GuestDTO dto);
 }
