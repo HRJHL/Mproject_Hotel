@@ -17,13 +17,27 @@ public class GuestServiceImpl implements GuestService {
 	}
 
 	@Override
-	public int save(GuestDTO dto) {
+	public List<GuestDTO> find_G() {
+		List<GuestDTO> list = null;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			list = dao.find_G(session);
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public int save_G(GuestDTO dto) {
 		int n = 0;
 		SqlSession session = null;
 		try {
 			session = MySqlSessionFactory.getSession();
 			// DAO 연동코드
-			n = dao.save(session, dto);
+			n = dao.save_G(session, dto);
 			session.commit();
 		} finally {
 			session.close();
@@ -32,18 +46,32 @@ public class GuestServiceImpl implements GuestService {
 	}
 
 	@Override
-	public List<GuestDTO> findAllGuest() {
-		List<GuestDTO> list = null;
+	public int remove_G(int guest_pno) {
+		int n = 0;
 		SqlSession session = null;
 		try {
 			session = MySqlSessionFactory.getSession();
 			// DAO 연동코드
-			list = dao.findAllGuest(session);
+			n = dao.remove_G(session, guest_pno);
 			session.commit();
 		} finally {
 			session.close();
 		}
-		return list;
+		return n;
+	}
+
+	public int update_G(GuestDTO dto) {
+		int n = 0;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			n = dao.update_G(session, dto);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return n;
 	}
 
 }

@@ -9,7 +9,11 @@ public interface GuestService {
 
 	public void setDao(GuestDAO dao);
 
-	public int save(GuestDTO dto);
+	public List<GuestDTO> find_G();
 
-	public List<GuestDTO> findAllGuest();
+	public int save_G(GuestDTO dto);
+
+	public int remove_G(int guest_pno);
+
+	public int update_G(GuestDTO dto);
 }
