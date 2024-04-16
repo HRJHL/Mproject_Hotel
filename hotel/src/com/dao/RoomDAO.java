@@ -8,11 +8,6 @@ import com.dto.RoomDTO;
 
 public class RoomDAO {
 
-	// save
-	public int save(SqlSession session, RoomDTO dto) {
-		return session.insert("com.config.RoomMapper.save2", dto);
-	}
-
 	// select
 	public List<RoomDTO> findAllRoom(SqlSession session) {
 		List<RoomDTO> list = session.selectList("com.config.RoomMapper.findAllRoom");
@@ -43,12 +38,17 @@ public class RoomDAO {
 	}
 
 	// save
-	public int saveRoom(SqlSession session, RoomDTO dto) {
-		return session.insert("com.config.RoomMapper.saveRoom", dto);
+	public int save_R(SqlSession session, RoomDTO dto) {
+		return session.insert("com.config.RoomMapper.save_R", dto);
 	}
 
 	// remove
-	public int removeByRoomNo(SqlSession session, int roomNo) {
-		return session.delete("com.config.RoomMapper.removeByRoomNo", roomNo);
+	public int remove_R(SqlSession session, int room_no) {
+		return session.delete("com.config.RoomMapper.remove_R", room_no);
+	}
+
+	// update
+	public int update_R(SqlSession session, RoomDTO dto) {
+		return session.update("com.config.RoomMapper.update_R", dto);
 	}
 }

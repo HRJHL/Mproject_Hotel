@@ -17,21 +17,6 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public int save2(RoomDTO dto) {
-		int n = 0;
-		SqlSession session = null;
-		try {
-			session = MySqlSessionFactory.getSession();
-			// DAO 연동코드
-			n = dao.save(session, dto);
-			session.commit();
-		} finally {
-			session.close();
-		}
-		return n;
-	}
-
-	@Override
 	public List<RoomDTO> findAllRoom() {
 		List<RoomDTO> list = null;
 		SqlSession session = null;
@@ -89,6 +74,51 @@ public class RoomServiceImpl implements RoomService {
 			session.close();
 		}
 		return list;
+	}
+
+	@Override
+	public int save_R(RoomDTO dto) {
+		int n = 0;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			n = dao.save_R(session, dto);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
+
+	@Override
+	public int remove_R(int room_no) {
+		int n = 0;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			n = dao.remove_R(session, room_no);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
+
+	@Override
+	public int update_R(RoomDTO dto) {
+		int n = 0;
+		SqlSession session = null;
+		try {
+			session = MySqlSessionFactory.getSession();
+			// DAO 연동코드
+			n = dao.update_R(session, dto);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return n;
 	}
 
 }

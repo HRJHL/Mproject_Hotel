@@ -9,8 +9,6 @@ public interface RoomService {
 
 	public void setDao(RoomDAO dao);
 
-	public int save2(RoomDTO dto);
-
 	public List<RoomDTO> findAllRoom();
 
 	public List<RoomDTO> findRoom_12();
@@ -18,5 +16,10 @@ public interface RoomService {
 	public List<RoomDTO> findRoom_34();
 
 	public List<RoomDTO> findRoom_56();
-	// public int removeByEmpno(int empno);
+
+	public int save_R(RoomDTO dto);
+
+	public int remove_R(int room_no);
+
+	public int update_R(RoomDTO dto);
 }
