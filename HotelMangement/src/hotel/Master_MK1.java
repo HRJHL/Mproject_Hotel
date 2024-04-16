@@ -311,8 +311,16 @@ public class Master_MK1 {
 					String room_no = tableRoom.getValueAt(selectedRow, 0).toString();
 					String roomState = tableRoom.getValueAt(selectedRow, 1).toString();
 					String capacity = tableRoom.getValueAt(selectedRow, 2).toString();
-					String checkIn = tableRoom.getValueAt(selectedRow, 3).toString();
-					String checkOut = tableRoom.getValueAt(selectedRow, 4).toString();
+					String checkIn = null;
+					if (tableRoom.getValueAt(selectedRow, 3) == null) {
+						checkIn = null;
+					} else
+						tableRoom.getValueAt(selectedRow, 3).toString();
+					String checkOut = null;
+					if (tableRoom.getValueAt(selectedRow, 4) == null) {
+						checkOut = null;
+					} else
+						tableRoom.getValueAt(selectedRow, 3).toString();
 					// Print the values to console
 					System.out.println("Selected Room:");
 					System.out.println("Room Number: " + room_no);
