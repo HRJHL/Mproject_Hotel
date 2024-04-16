@@ -45,6 +45,21 @@ public class GuestServiceImpl implements GuestService{
 	}
 	
 	@Override
+	public int save_P(GuestDTO dto) {
+		int n = 0;
+		SqlSession session = null;
+	      try {
+			session = MySqlSessionFactory.getSession();
+			//DAO 연동코드
+			n = dao.save_P(session, dto);
+			session.commit();
+	      }finally {
+			session.close();
+	      }
+		return n;
+	}
+	
+	@Override
 	public int remove_G(int guest_pno) {
 		int n = 0;
 		SqlSession session = null;

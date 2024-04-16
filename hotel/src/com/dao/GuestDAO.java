@@ -19,6 +19,10 @@ public class GuestDAO {
 		return session.insert("com.config.GuestMapper.save_G", dto);
 	}
 	
+	public int save_P(SqlSession session, GuestDTO dto) {
+		return session.insert("com.config.GuestMapper.save_P", dto);
+	}
+	
 	//remove
 	public int remove_G(SqlSession session, int guest_pno) {
 		return session.delete("com.config.GuestMapper.remove_G", guest_pno);

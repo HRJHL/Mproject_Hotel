@@ -99,6 +99,39 @@ public class Master_MK2 {
 		scrolledTable2.setBounds(35, 51, 356, 90); // 수정된 부분
 		page1.add(scrolledTable2); // 수정된 부분
 		
+		JButton headr = new JButton("목록");
+		headr.setBounds(40, 10, 90, 30);
+		headr.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model2 = (DefaultTableModel) tableRoom2.getModel();
+
+				model2.setRowCount(0);
+				int room_no;
+				int room_state;
+				int room_capacity;
+				String room_checkin_time;
+				String room_checkout_time;
+				
+				RoomService service = new RoomServiceImpl();
+				service.setDao(new RoomDAO());
+				List<RoomDTO> list = service.find_Q();
+				for (RoomDTO s : list) {
+					room_no = s.getRoom_no();
+					room_state = s.getRoom_state();
+					room_capacity = s.getRoom_capacity();
+					room_checkin_time = s.getRoom_checkin_time();
+					room_checkout_time = s.getRoom_checkout_time();
+					
+
+					String[] row = { Integer.toString(room_no), Integer.toString(room_state), Integer.toString(room_capacity),room_checkin_time, room_checkout_time};
+
+					model2.addRow(row);
+				}
+			}
+		});
+		page1.add(headr);
+		
 		JButton stayBtn = new JButton("숙박");
 		stayBtn.setBounds(40, 150, 90, 30);
 		stayBtn.addActionListener(new ActionListener() {
@@ -188,17 +221,6 @@ public class Master_MK2 {
 		});
 		page2.add(p2backButton);
 		
-		JButton p2nextButton = new JButton("다음");
-		p2nextButton.setBounds(220, 223, 99, 30);
-		p2nextButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				page2.setVisible(false);
-				page4.setVisible(true);
-			}
-		});
-		page2.add(p2nextButton);
-	    
 		JTextField phoneNum = new JTextField();
         phoneNum.setBounds(100, 50, 200, 30);
         page2.add(phoneNum);
@@ -222,8 +244,35 @@ public class Master_MK2 {
         time.setBounds(30, 130, 100, 30);  // 위치와 크기 설정
         page2.add(time);
         
+        JButton p2nextButton = new JButton("다음");
+		p2nextButton.setBounds(220, 223, 99, 30);
+		p2nextButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				page2.setVisible(false);
+				page4.setVisible(true);
+				
+				String guest_pno = phoneNum.getText();
+                String car_no = carNum.getText();
+                String m_count = timeNum.getText();
+                
+                
+                GuestDTO dto = new GuestDTO();
+	            dto.setGuest_pno(guest_pno);
+	            dto.setCar_no(car_no);
+	            dto.setM_count(Integer.parseInt(m_count));
+	            
+	            GuestService service = new GuestServiceImpl();
+	            service.setDao(new GuestDAO());
+	            
+	            int n = service.save_P(dto);
+	            System.out.println(n+"업데이트됨.");
+                
+			}
+		});
+		page2.add(p2nextButton);
 		
-		
+        
 		HPanel.setBounds(0, 0, 436, 263);
 		frame.getContentPane().add(HPanel);
 		HPanel.setLayout(null);
