@@ -20,8 +20,11 @@
    <!-- 수정 -->
      <update id="update_G" parameterType="GuestDTO" >
         update tb_guest
-        set guest_pno = #{guest_pno}, guest_name = #{guest_name}
-        where room_no=#{room_no}
+        set
+        m_count = #{m_count},
+        stay_days = #{stay_days}
+        guest_name = #{guest_name},
+        where guest_pno=#{guest_pno}
      </update>
    
    <!--전체 조회 -->

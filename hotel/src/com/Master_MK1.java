@@ -24,7 +24,7 @@ import com.service.RoomServiceImpl;
 
 public class Master_MK1 {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private JTable table_1;
 	JPanel MPanel;
@@ -370,6 +370,61 @@ public class Master_MK1 {
 		        }
 		    }
 		});
-
+		
+		Create_Rm.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		            
+		            // Create a new JFrame for the update popup
+		            JFrame updateFrame = new JFrame("Create Room");
+		            updateFrame.setSize(400, 300);
+		            
+		            // Create text fields for each column
+		            JTextField noField = new JTextField(10);
+		            JTextField capacityField = new JTextField(10);
+		            
+		            
+		            
+		            // Add text fields to the frame
+		            updateFrame.add(new JLabel("No:"));
+		            updateFrame.add(noField);
+		            updateFrame.add(new JLabel("Capacity:"));
+		            updateFrame.add(capacityField);
+		            
+		            
+		            // Create a button to confirm update
+		            JButton updateButton = new JButton("생성완료");
+		            updateButton.addActionListener(new ActionListener() {
+		                @Override
+		                public void actionPerformed(ActionEvent e) {
+		                    // Get values from text fields
+		                	String room_no = noField.getText();
+		                    String room_capacity = capacityField.getText();
+		                    
+		                    
+		                    RoomDTO dto = new RoomDTO();
+				            dto.setRoom_no(Integer.parseInt(room_no));
+				            dto.setRoom_capacity(Integer.parseInt(room_capacity));
+				            
+				            RoomService service = new RoomServiceImpl();
+				            service.setDao(new RoomDAO());
+				            
+				            int n = service.save_R(dto);
+				            System.out.println(n+"업데이트됨.");
+		                    
+		                    // Close the update frame
+		                    updateFrame.dispose();
+		                }
+		            });
+		            
+		            // Add update button to the frame
+		            updateFrame.add(updateButton);
+		            
+		            // Set layout for the frame
+		            updateFrame.setLayout(new FlowLayout());
+		            updateFrame.setVisible(true);
+		        }
+		    
+		});
 	}
 }
