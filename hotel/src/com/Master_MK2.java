@@ -174,7 +174,7 @@ public class Master_MK2 {
 			}
 		});
 		page1.add(checkBtn);
-		
+		//페이지1
 		JButton extendBtn = new JButton("연장");
 		extendBtn.setBounds(160, 200, 90, 30);
 		extendBtn.addActionListener(new ActionListener() {
