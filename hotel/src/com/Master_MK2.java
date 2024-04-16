@@ -79,9 +79,9 @@ public class Master_MK2 {
 		Panel MPanel = new Panel(); // 메인
 		Panel RPanel = new Panel(); // 방 관리
 		Panel CPanel = new Panel(); // 고객 관리
-		Panel page1 = new Panel();
-		Panel page2 = new Panel();
-		Panel page3 = new Panel();
+		Panel page1 = new Panel(); // 고객 메인
+		Panel page2 = new Panel(); // 숙박/대실
+		Panel page3 = new Panel(); 
 		Panel page4 = new Panel();
 		Panel page5 = new Panel();
 		
