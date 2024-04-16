@@ -8,29 +8,23 @@ import com.dto.GuestDTO;
 
 public class GuestDAO {
 
-	// save
-	public int save(SqlSession session, GuestDTO dto) {
-		return session.insert("com.config.GuestMapper.save", dto);
-	}
-
-	// select
-	public List<GuestDTO> findAllGuest(SqlSession session) {
-		List<GuestDTO> list = session.selectList("com.config.GuestMapper.findAllGuest");
-		return list;
-	}
-
-	public List<GuestDTO> findGuestByPno(SqlSession session) {
-		List<GuestDTO> list = session.selectList("com.config.GuestMapper.findAllGuest");
+	public List<GuestDTO> find_G(SqlSession session) {
+		List<GuestDTO> list = session.selectList("com.config.GuestMapper.find_G");
 		return list;
 	}
 
 	// save
-	public int saveGuest(SqlSession session, GuestDTO dto) {
-		return session.insert("com.config.GuestMapper.saveGuest", dto);
+	public int save_G(SqlSession session, GuestDTO dto) {
+		return session.insert("com.config.GuestMapper.save_G", dto);
 	}
 
 	// remove
-	public int removeByGuestPno(SqlSession session, int roomNo) {
-		return session.delete("com.config.GuestMapper.removeByGuestPno", roomNo);
+	public int remove_G(SqlSession session, int guest_pno) {
+		return session.delete("com.config.GuestMapper.remove_G", guest_pno);
+	}
+
+	// update
+	public int update_G(SqlSession session, GuestDTO dto) {
+		return session.update("com.config.GuestMapper.update_G", dto);
 	}
 }

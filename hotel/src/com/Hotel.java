@@ -118,7 +118,7 @@ public class Hotel extends JFrame {
 
 				GuestService service = new GuestServiceImpl();
 				service.setDao(new GuestDAO());
-				int n = service.save(dto);
+				int n = service.save_G(dto);
 				System.out.println(n + "개가 저장됨");
 				JOptionPane.showInternalMessageDialog(null, n + "개가 저장됨", "저장", JOptionPane.INFORMATION_MESSAGE);
 				panel_1.setVisible(true);

@@ -26,14 +26,21 @@ import com.service.GuestServiceImpl;
 import com.service.RoomService;
 import com.service.RoomServiceImpl;
 
-public class Master_MK1 {
+public class Master_MK2 {
 
 	private JFrame frame;
 	private JTable tableRoom;
+	private JTable tableRoom2;
 	private JTable tableGuest;
+	JPanel HPanel;
 	JPanel MPanel;
 	JPanel CPanel;
 	JPanel RPanel;
+	JPanel page1;
+	JPanel page2;
+	JPanel page3;
+	JPanel page4;
+	JPanel page5;
 
 	/**
 	 * Launch the application.
@@ -42,7 +49,7 @@ public class Master_MK1 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Master_MK1 window = new Master_MK1();
+					Master_MK2 window = new Master_MK2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +61,7 @@ public class Master_MK1 {
 	/**
 	 * Create the application.
 	 */
-	public Master_MK1() {
+	public Master_MK2() {
 		initialize();
 	}
 
@@ -67,15 +74,148 @@ public class Master_MK1 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
+		Panel HPanel = new Panel(); // 홈
 		Panel MPanel = new Panel(); // 메인
 		Panel RPanel = new Panel(); // 방 관리
 		Panel CPanel = new Panel(); // 고객 관리
+		Panel page1 = new Panel();
+		Panel page2 = new Panel();
+		Panel page3 = new Panel();
+		Panel page4 = new Panel();
+		Panel page5 = new Panel();
+
+		page1.setBounds(0, 0, 436, 263);
+		frame.getContentPane().add(page1);
+		page1.setLayout(null);
+		page1.setVisible(false);
+
+		String headerRoom2[] = { "방 번호", "현재 상태", "수용 가능 인원", "체크인", "체크아웃" };
+		DefaultTableModel modelRoom2 = new DefaultTableModel(headerRoom2, 0);
+		JTable tableRoom2 = new JTable(modelRoom2);
+		tableRoom2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		tableRoom2.setBounds(35, 51, 356, 90);
+		JScrollPane scrolledTable2 = new JScrollPane(tableRoom2); // 수정된 부분
+		scrolledTable2.setBounds(35, 51, 356, 90); // 수정된 부분
+		page1.add(scrolledTable2); // 수정된 부분
+
+		JButton stayBtn = new JButton("숙박");
+		stayBtn.setBounds(40, 150, 90, 30);
+		stayBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		page1.add(stayBtn);
+
+		JButton shortBtn = new JButton("대실");
+		shortBtn.setBounds(160, 150, 90, 30);
+		shortBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		page1.add(shortBtn);
+
+		JButton checkBtn = new JButton("퇴실");
+		checkBtn.setBounds(40, 200, 90, 30);
+		checkBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		page1.add(checkBtn);
+
+		JButton extendBtn = new JButton("연장");
+		extendBtn.setBounds(160, 200, 90, 30);
+		extendBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		page1.add(extendBtn);
+
+		JButton PBackButton = new JButton("고객 관리자");
+		PBackButton.setBounds(325, 223, 99, 30);
+		PBackButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				RPanel.setVisible(false);
+				MPanel.setVisible(false);
+				page1.setVisible(false);
+				HPanel.setVisible(true);
+			}
+		});
+		page1.add(PBackButton);
+
+		HPanel.setBounds(0, 0, 436, 263);
+		frame.getContentPane().add(HPanel);
+		HPanel.setLayout(null);
+
+		JButton HBackButton = new JButton("메인 화면으로");
+		HBackButton.setBounds(325, 223, 99, 30);
+		HPanel.add(HBackButton);
+
+		JButton HCButton = new JButton("고객용");
+		HCButton.setBounds(108, 23, 246, 81);
+		HCButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HPanel.setVisible(false);
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(true);
+			}
+		});
+		HPanel.add(HCButton);
+
+		JButton HRButton = new JButton("관리자용");
+		HRButton.setBounds(106, 116, 246, 81);
+		HRButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HPanel.setVisible(false);
+				MPanel.setVisible(true);
+				RPanel.setVisible(false);
+				CPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		HPanel.add(HRButton);
+
 		MPanel.setBounds(0, 0, 436, 263);
 		frame.getContentPane().add(MPanel);
 		MPanel.setLayout(null);
 
-		JButton BackButton = new JButton("메인 화면으로");
+		JButton BackButton = new JButton("고객 관리자");
 		BackButton.setBounds(325, 223, 99, 30);
+		BackButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				RPanel.setVisible(false);
+				MPanel.setVisible(false);
+				page1.setVisible(false);
+				HPanel.setVisible(true);
+			}
+		});
 		MPanel.add(BackButton);
 
 		JButton CButton = new JButton("고객 관리");
@@ -126,19 +266,19 @@ public class Master_MK1 {
 		scrolledTable.setBounds(31, 62, 381, 119); // 수정된 부분
 		RPanel.add(scrolledTable); // 수정된 부분
 
-		JButton Create_Rm = new JButton("생성");
+		JButton Create_Rm = new JButton("생성 방");
 		Create_Rm.setBounds(31, 204, 91, 23);
 		RPanel.add(Create_Rm);
 
-		JButton Update_Rm = new JButton("수정");
+		JButton Update_Rm = new JButton("수정 방");
 		Update_Rm.setBounds(166, 204, 91, 23);
 		RPanel.add(Update_Rm);
 
-		JButton Delete_Rm = new JButton("삭제");
+		JButton Delete_Rm = new JButton("삭제 방");
 		Delete_Rm.setBounds(301, 204, 91, 23);
 		RPanel.add(Delete_Rm);
 
-		JButton BackButtonO = new JButton("첫 화면으로");
+		JButton BackButtonO = new JButton("관리자페이지");
 		BackButtonO.setBounds(323, 237, 101, 26);
 		BackButtonO.addActionListener(new ActionListener() {
 			@Override
@@ -171,19 +311,19 @@ public class Master_MK1 {
 		scrolledTableG.setBounds(35, 51, 356, 90); // 수정된 부분
 		CPanel.add(scrolledTableG); // 수정된 부분
 
-		JButton Create_Cu = new JButton("생성");
+		JButton Create_Cu = new JButton("생성 숙");
 		Create_Cu.setBounds(35, 168, 91, 23);
 		CPanel.add(Create_Cu);
 
-		JButton Update_Cu = new JButton("수정");
+		JButton Update_Cu = new JButton("수정 숙");
 		Update_Cu.setBounds(160, 168, 91, 23);
 		CPanel.add(Update_Cu);
 
-		JButton Delete_Cu = new JButton("삭제");
+		JButton Delete_Cu = new JButton("삭제 숙");
 		Delete_Cu.setBounds(285, 168, 91, 23);
 		CPanel.add(Delete_Cu);
 
-		JButton BackButtonT = new JButton("첫 화면으로");
+		JButton BackButtonT = new JButton("관리자페이지");
 		BackButtonT.setBounds(333, 230, 91, 23);
 		BackButtonT.addActionListener(new ActionListener() {
 			@Override
@@ -417,7 +557,6 @@ public class Master_MK1 {
 
 					model.addRow(row);
 				}
-
 			}
 		});
 
