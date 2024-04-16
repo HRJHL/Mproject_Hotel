@@ -30,10 +30,17 @@ public class Master_MK2 {
 
 	private JFrame frame;
 	private JTable tableRoom;
+	private JTable tableRoom2;
 	private JTable tableGuest;
+	JPanel HPanel;
 	JPanel MPanel;
 	JPanel CPanel;
 	JPanel RPanel;
+	JPanel page1;
+	JPanel page2;
+	JPanel page3;
+	JPanel page4;
+	JPanel page5;
 
 	/**
 	 * Launch the application.
@@ -67,15 +74,148 @@ public class Master_MK2 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
+		Panel HPanel = new Panel(); // 홈
 		Panel MPanel = new Panel(); // 메인
 		Panel RPanel = new Panel(); // 방 관리
 		Panel CPanel = new Panel(); // 고객 관리
+		Panel page1 = new Panel();
+		Panel page2 = new Panel();
+		Panel page3 = new Panel();
+		Panel page4 = new Panel();
+		Panel page5 = new Panel();
+
+		page1.setBounds(0, 0, 436, 263);
+		frame.getContentPane().add(page1);
+		page1.setLayout(null);
+		page1.setVisible(false);
+
+		String headerRoom2[] = { "방 번호", "현재 상태", "수용 가능 인원", "체크인", "체크아웃" };
+		DefaultTableModel modelRoom2 = new DefaultTableModel(headerRoom2, 0);
+		JTable tableRoom2 = new JTable(modelRoom2);
+		tableRoom2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		tableRoom2.setBounds(35, 51, 356, 90);
+		JScrollPane scrolledTable2 = new JScrollPane(tableRoom2); // 수정된 부분
+		scrolledTable2.setBounds(35, 51, 356, 90); // 수정된 부분
+		page1.add(scrolledTable2); // 수정된 부분
+
+		JButton stayBtn = new JButton("숙박");
+		stayBtn.setBounds(40, 150, 90, 30);
+		stayBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		page1.add(stayBtn);
+
+		JButton shortBtn = new JButton("대실");
+		shortBtn.setBounds(160, 150, 90, 30);
+		shortBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		page1.add(shortBtn);
+
+		JButton checkBtn = new JButton("퇴실");
+		checkBtn.setBounds(40, 200, 90, 30);
+		checkBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		page1.add(checkBtn);
+
+		JButton extendBtn = new JButton("연장");
+		extendBtn.setBounds(160, 200, 90, 30);
+		extendBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		page1.add(extendBtn);
+
+		JButton PBackButton = new JButton("고객 관리자");
+		PBackButton.setBounds(325, 223, 99, 30);
+		PBackButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				RPanel.setVisible(false);
+				MPanel.setVisible(false);
+				page1.setVisible(false);
+				HPanel.setVisible(true);
+			}
+		});
+		page1.add(PBackButton);
+
+		HPanel.setBounds(0, 0, 436, 263);
+		frame.getContentPane().add(HPanel);
+		HPanel.setLayout(null);
+
+		JButton HBackButton = new JButton("메인 화면으로");
+		HBackButton.setBounds(325, 223, 99, 30);
+		HPanel.add(HBackButton);
+
+		JButton HCButton = new JButton("고객용");
+		HCButton.setBounds(108, 23, 246, 81);
+		HCButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HPanel.setVisible(false);
+				CPanel.setVisible(false);
+				MPanel.setVisible(false);
+				RPanel.setVisible(false);
+				page1.setVisible(true);
+			}
+		});
+		HPanel.add(HCButton);
+
+		JButton HRButton = new JButton("관리자용");
+		HRButton.setBounds(106, 116, 246, 81);
+		HRButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HPanel.setVisible(false);
+				MPanel.setVisible(true);
+				RPanel.setVisible(false);
+				CPanel.setVisible(false);
+				page1.setVisible(false);
+			}
+		});
+		HPanel.add(HRButton);
+
 		MPanel.setBounds(0, 0, 436, 263);
 		frame.getContentPane().add(MPanel);
 		MPanel.setLayout(null);
 
-		JButton BackButton = new JButton("메인 화면으로");
+		JButton BackButton = new JButton("고객 관리자");
 		BackButton.setBounds(325, 223, 99, 30);
+		BackButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CPanel.setVisible(false);
+				RPanel.setVisible(false);
+				MPanel.setVisible(false);
+				page1.setVisible(false);
+				HPanel.setVisible(true);
+			}
+		});
 		MPanel.add(BackButton);
 
 		JButton CButton = new JButton("고객 관리");
@@ -138,7 +278,7 @@ public class Master_MK2 {
 		Delete_Rm.setBounds(301, 204, 91, 23);
 		RPanel.add(Delete_Rm);
 
-		JButton BackButtonO = new JButton("첫 화면으로");
+		JButton BackButtonO = new JButton("관리자페이지");
 		BackButtonO.setBounds(323, 237, 101, 26);
 		BackButtonO.addActionListener(new ActionListener() {
 			@Override
@@ -183,7 +323,7 @@ public class Master_MK2 {
 		Delete_Cu.setBounds(285, 168, 91, 23);
 		CPanel.add(Delete_Cu);
 
-		JButton BackButtonT = new JButton("첫 화면으로");
+		JButton BackButtonT = new JButton("관리자페이지");
 		BackButtonT.setBounds(333, 230, 91, 23);
 		BackButtonT.addActionListener(new ActionListener() {
 			@Override
@@ -275,7 +415,6 @@ public class Master_MK2 {
 							Integer.toString(room_capacity), room_checkin_time, room_checkout_time };
 					model.addRow(row);
 				}
-
 			}
 		});
 
@@ -399,7 +538,7 @@ public class Master_MK2 {
 				int m_count;
 				String guest_name;
 				int stay_days;
-
+				String car_no;
 				int room_no;
 
 				GuestService service = new GuestServiceImpl();
@@ -411,168 +550,14 @@ public class Master_MK2 {
 					guest_name = s.getGuest_name();
 					m_count = s.getM_count();
 					stay_days = s.getStay_days();
+					car_no = s.getCar_no();
 
 					String[] row = { guest_pno, Integer.toString(m_count), guest_name, Integer.toString(stay_days),
-							Integer.toString(room_no) };
+							car_no, Integer.toString(room_no) };
 
 					model.addRow(row);
 				}
-
 			}
-		});
-
-		Delete_Rm.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedRow = tableRoom.getSelectedRow();
-				if (selectedRow != -1) { // Ensure a row is selected
-					// Get the values from the selected row
-					String room_no = tableRoom.getValueAt(selectedRow, 0).toString();
-					// Print the values to console
-					System.out.println("선택된 방");
-					System.out.println("Room Number: " + room_no);
-
-					RoomDTO dto = new RoomDTO();
-					dto.setRoom_no(Integer.parseInt(room_no));
-
-					RoomService service = new RoomServiceImpl();
-					service.setDao(new RoomDAO());
-					int n = service.remove_R(Integer.parseInt(room_no));
-					System.out.println(n + " 개가 삭제됨.");
-
-				}
-			}
-		});
-
-		Update_Rm.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedRow = tableRoom.getSelectedRow();
-				if (selectedRow != -1) { // Ensure a row is selected
-					// Get the values from the selected row
-					String room_no = tableRoom.getValueAt(selectedRow, 0).toString();
-					String roomState = tableRoom.getValueAt(selectedRow, 1).toString();
-					String capacity = tableRoom.getValueAt(selectedRow, 2).toString();
-					String checkIn = tableRoom.getValueAt(selectedRow, 3).toString();
-					String checkOut = tableRoom.getValueAt(selectedRow, 4).toString();
-					// Print the values to console
-					System.out.println("Selected Room:");
-					System.out.println("Room Number: " + room_no);
-
-					// Create a new JFrame for the update popup
-					JFrame updateFrame = new JFrame("Update Room");
-					updateFrame.setSize(400, 300);
-
-					// Create text fields for each column
-					JTextField capacityField = new JTextField(10);
-					JTextField stateField = new JTextField(10);
-					JTextField checkinField = new JTextField(10);
-					JTextField checkoutField = new JTextField(10);
-
-					// Set default values to text fields
-					capacityField.setText(capacity);
-					stateField.setText(roomState);
-					checkinField.setText(checkIn);
-					checkoutField.setText(checkOut);
-
-					// Add text fields to the frame
-					updateFrame.add(new JLabel("Capacity:"));
-					updateFrame.add(capacityField);
-					updateFrame.add(new JLabel("State:"));
-					updateFrame.add(stateField);
-					updateFrame.add(new JLabel("Check-In Time:"));
-					updateFrame.add(checkinField);
-					updateFrame.add(new JLabel("Check-Out Time:"));
-					updateFrame.add(checkoutField);
-
-					// Create a button to confirm update
-					JButton updateButton = new JButton("수정완료");
-					updateButton.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							// Get values from text fields
-							String room_capacity = capacityField.getText();
-							String room_state = stateField.getText();
-							String room_checkin_time = checkinField.getText();
-							String room_checkout_time = checkoutField.getText();
-
-							RoomDTO dto = new RoomDTO();
-							dto.setRoom_no(Integer.parseInt(room_no));
-							dto.setRoom_capacity(Integer.parseInt(room_capacity));
-							dto.setRoom_state(Integer.parseInt(room_state));
-							dto.setRoom_checkin_time(room_checkin_time);
-							dto.setRoom_checkout_time(room_checkout_time);
-							RoomService service = new RoomServiceImpl();
-							service.setDao(new RoomDAO());
-
-							int n = service.update_R(dto);
-							System.out.println(n + "업데이트됨.");
-
-							// Close the update frame
-							updateFrame.dispose();
-						}
-					});
-
-					// Add update button to the frame
-					updateFrame.add(updateButton);
-
-					// Set layout for the frame
-					updateFrame.setLayout(new FlowLayout());
-					updateFrame.setVisible(true);
-				}
-			}
-		});
-
-		Create_Rm.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				// Create a new JFrame for the update popup
-				JFrame updateFrame = new JFrame("Create Room");
-				updateFrame.setSize(400, 300);
-
-				// Create text fields for each column
-				JTextField noField = new JTextField(10);
-				JTextField capacityField = new JTextField(10);
-
-				// Add text fields to the frame
-				updateFrame.add(new JLabel("No:"));
-				updateFrame.add(noField);
-				updateFrame.add(new JLabel("Capacity:"));
-				updateFrame.add(capacityField);
-
-				// Create a button to confirm update
-				JButton updateButton = new JButton("생성완료");
-				updateButton.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// Get values from text fields
-						String room_no = noField.getText();
-						String room_capacity = capacityField.getText();
-
-						RoomDTO dto = new RoomDTO();
-						dto.setRoom_no(Integer.parseInt(room_no));
-						dto.setRoom_capacity(Integer.parseInt(room_capacity));
-
-						RoomService service = new RoomServiceImpl();
-						service.setDao(new RoomDAO());
-
-						int n = service.save_R(dto);
-						System.out.println(n + "업데이트됨.");
-
-						// Close the update frame
-						updateFrame.dispose();
-					}
-				});
-
-				// Add update button to the frame
-				updateFrame.add(updateButton);
-
-				// Set layout for the frame
-				updateFrame.setLayout(new FlowLayout());
-				updateFrame.setVisible(true);
-			}
-
 		});
 
 		// 고객
