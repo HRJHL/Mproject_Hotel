@@ -334,18 +334,27 @@ public class Master_MK1 {
 		            updateFrame.add(checkoutField);
 		            
 		            // Create a button to confirm update
-		            JButton updateButton = new JButton("Update");
+		            JButton updateButton = new JButton("수정완료");
 		            updateButton.addActionListener(new ActionListener() {
 		                @Override
 		                public void actionPerformed(ActionEvent e) {
 		                    // Get values from text fields
-		                    String newCapacity = capacityField.getText();
-		                    String newState = stateField.getText();
-		                    String newCheckIn = checkinField.getText();
-		                    String newCheckOut = checkoutField.getText();
+		                    String room_capacity = capacityField.getText();
+		                    String room_state = stateField.getText();
+		                    String room_checkin_time = checkinField.getText();
+		                    String room_checkout_time = checkoutField.getText();
 		                    
-		                    // Perform update operation using values
-		                    // updateRoom(selectedRow, newCapacity, newState, newCheckIn, newCheckOut);
+		                    RoomDTO dto = new RoomDTO();
+				            dto.setRoom_no(Integer.parseInt(room_no));
+				            dto.setRoom_capacity(Integer.parseInt(room_capacity));
+				            dto.setRoom_state(Integer.parseInt(room_state));
+				            dto.setRoom_checkin_time(room_checkin_time);
+				            dto.setRoom_checkout_time(room_checkout_time);
+				            RoomService service = new RoomServiceImpl();
+				            service.setDao(new RoomDAO());
+				            
+				            int n = service.update_R(dto);
+				            System.out.println(n+"업데이트됨.");
 		                    
 		                    // Close the update frame
 		                    updateFrame.dispose();
