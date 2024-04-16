@@ -198,6 +198,30 @@ public class Master_MK2 {
 			}
 		});
 		page2.add(p2nextButton);
+	    
+		JTextField phoneNum = new JTextField();
+        phoneNum.setBounds(100, 50, 200, 30);
+        page2.add(phoneNum);
+
+        JTextField carNum = new JTextField();
+        carNum.setBounds(100, 90, 200, 30);
+        page2.add(carNum);
+        
+        JTextField timeNum = new JTextField();
+        timeNum.setBounds(100, 130, 200, 30);
+        page2.add(timeNum);
+        
+        JLabel label2 = new JLabel("차량 번호:");
+        label2.setBounds(30, 50, 100, 30);  // 위치와 크기 설정
+        page2.add(label2);
+        JLabel label1 = new JLabel("전화번호:");
+        label1.setBounds(30, 90, 100, 30);  // 위치와 크기 설정
+        page2.add(label1);
+        
+        JLabel time = new JLabel(" 시간 :");
+        time.setBounds(30, 130, 100, 30);  // 위치와 크기 설정
+        page2.add(time);
+        
 		
 		
 		HPanel.setBounds(0, 0, 436, 263);
