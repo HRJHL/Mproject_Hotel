@@ -419,24 +419,19 @@ public class Master_MK1 {
 					// Create text fields for each column
 					JTextField capacityField = new JTextField(10);
 					JTextField stateField = new JTextField(10);
-					JTextField checkinField = new JTextField(10);
-					JTextField checkoutField = new JTextField(10);
+					
 
 					// Set default values to text fields
 					capacityField.setText(capacity);
 					stateField.setText(roomState);
-					checkinField.setText(checkIn);
-					checkoutField.setText(checkOut);
+					
 
 					// Add text fields to the frame
 					updateFrame.add(new JLabel("Capacity:"));
 					updateFrame.add(capacityField);
 					updateFrame.add(new JLabel("State:"));
 					updateFrame.add(stateField);
-					updateFrame.add(new JLabel("Check-In Time:"));
-					updateFrame.add(checkinField);
-					updateFrame.add(new JLabel("Check-Out Time:"));
-					updateFrame.add(checkoutField);
+					
 
 					// Create a button to confirm update
 					JButton updateButton = new JButton("수정완료");
@@ -446,15 +441,12 @@ public class Master_MK1 {
 							// Get values from text fields
 							String room_capacity = capacityField.getText();
 							String room_state = stateField.getText();
-							String room_checkin_time = checkinField.getText();
-							String room_checkout_time = checkoutField.getText();
-
+							
 							RoomDTO dto = new RoomDTO();
 							dto.setRoom_no(Integer.parseInt(room_no));
 							dto.setRoom_capacity(Integer.parseInt(room_capacity));
 							dto.setRoom_state(Integer.parseInt(room_state));
-							dto.setRoom_checkin_time(room_checkin_time);
-							dto.setRoom_checkout_time(room_checkout_time);
+							
 							RoomService service = new RoomServiceImpl();
 							service.setDao(new RoomDAO());
 
@@ -541,8 +533,8 @@ public class Master_MK1 {
 					// Get the values from the selected row
 					String guest_pno = tableGuest.getValueAt(selectedRow, 0).toString();
 					String m_count = tableGuest.getValueAt(selectedRow, 1).toString();
-					String stay_days = tableGuest.getValueAt(selectedRow, 2).toString();
-					String guest_name = tableGuest.getValueAt(selectedRow, 3).toString();
+					String stay_days = tableGuest.getValueAt(selectedRow, 3).toString();
+					String guest_name = tableGuest.getValueAt(selectedRow, 2).toString();
 
 					// Print the values to console
 					System.out.println("Selected Room:");
@@ -563,11 +555,11 @@ public class Master_MK1 {
 					daysField.setText(stay_days);
 
 					// Add text fields to the frame
-					updateFrame.add(new JLabel("Capacity:"));
+					updateFrame.add(new JLabel("인원수"));
 					updateFrame.add(countField);
-					updateFrame.add(new JLabel("State:"));
+					updateFrame.add(new JLabel("이름"));
 					updateFrame.add(nameField);
-					updateFrame.add(new JLabel("Check-In Time:"));
+					updateFrame.add(new JLabel("숙박일"));
 					updateFrame.add(daysField);
 
 					// Create a button to confirm update
@@ -579,9 +571,10 @@ public class Master_MK1 {
 							String m_count = countField.getText();
 							String guest_name = nameField.getText();
 							String stay_days = daysField.getText();
-
+							String guest_pno2 = guest_pno;
+							
 							GuestDTO dto = new GuestDTO();
-							dto.setGuest_pno(guest_pno);
+							dto.setGuest_pno(guest_pno2);
 							dto.setM_count(Integer.parseInt(m_count));
 							dto.setStay_days(Integer.parseInt(stay_days));
 							dto.setGuest_name(guest_name);

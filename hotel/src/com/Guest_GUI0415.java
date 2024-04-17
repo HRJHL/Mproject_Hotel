@@ -285,11 +285,13 @@ public class Guest_GUI0415 extends JFrame {
 					System.out.println("선택된 방");
 					System.out.println("Room Number: " + room_no);
 				}
+            	
 				String guest_pno2 = phoneNum2.getText();
                 String car_no = carNum.getText();
                 String guest_name = name.getText();
                 String stay_days = timeNum.getText();
                 String room_no2 = room_no;
+                String room_state ="2";
                 
                 GuestDTO dto = new GuestDTO();
 	            dto.setGuest_pno(guest_pno2);
@@ -307,6 +309,17 @@ public class Guest_GUI0415 extends JFrame {
 	            System.out.println("폰번호: " + guest_pno2);
 	            System.out.println(n+"생성됨.");
 	            
+	            
+	            RoomService service2 = new RoomServiceImpl();
+	            service2.setDao(new RoomDAO());
+	            
+	            RoomDTO dto2 = new RoomDTO();
+				dto2.setRoom_no(Integer.parseInt(room_no));
+				dto2.setRoom_state(Integer.parseInt(room_state));
+				
+			
+				int a = service2.update_St(dto2);
+				System.out.println(a + "업데이트됨.");
 	            lastpage = 2;
                 showPage(4);
 		        }

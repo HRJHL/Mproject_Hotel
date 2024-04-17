@@ -28,8 +28,8 @@
         update tb_guest
         set
         m_count = #{m_count},
-        stay_days = #{stay_days}
-        guest_name = #{guest_name},
+        stay_days = #{stay_days},
+        guest_name = #{guest_name}
         where guest_pno=#{guest_pno}
      </update>
      

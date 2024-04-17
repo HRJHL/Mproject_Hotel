@@ -853,7 +853,7 @@ public class Master_MK2 {
 		            
 		            GuestService service = new GuestServiceImpl();
 		            service.setDao(new GuestDAO());
-		            int n = service.remove_G(Integer.parseInt(guest_pno));
+		            int n = service.remove_G(guest_pno);
 		            System.out.println(n+" 개가 삭제됨.");
 		            
 		        }
