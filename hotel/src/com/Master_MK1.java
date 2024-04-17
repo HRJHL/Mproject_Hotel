@@ -112,10 +112,6 @@ public class Master_MK1 {
 		frame.getContentPane().add(MPanel);
 		MPanel.setLayout(null);
 
-		JButton BackButton = new JButton("메인 화면으로");
-		BackButton.setBounds(325, 223, 99, 30);
-		MPanel.add(BackButton);
-
 		JButton CButton = new JButton("고객 관리");
 		CButton.setBounds(108, 23, 246, 81);
 		CButton.addActionListener(new ActionListener() {
@@ -165,15 +161,15 @@ public class Master_MK1 {
 		RPanel.add(scrolledTable); // 수정된 부분
 
 		JButton Create_Rm = new JButton("생성");
-		Create_Rm.setBounds(31, 204, 91, 23);
+		Create_Rm.setBounds(31, 190, 91, 23);
 		RPanel.add(Create_Rm);
 
 		JButton Update_Rm = new JButton("수정");
-		Update_Rm.setBounds(166, 204, 91, 23);
+		Update_Rm.setBounds(166, 190, 91, 23);
 		RPanel.add(Update_Rm);
 
 		JButton Delete_Rm = new JButton("삭제");
-		Delete_Rm.setBounds(301, 204, 91, 23);
+		Delete_Rm.setBounds(301, 190, 91, 23);
 		RPanel.add(Delete_Rm);
 
 		JButton BackButtonO = new JButton("첫 화면으로");
@@ -196,9 +192,6 @@ public class Master_MK1 {
 		PCus.setBounds(35, 10, 152, 31);
 		CPanel.add(PCus);
 
-		JButton RCus = new JButton("예약 고객");
-		RCus.setBounds(239, 10, 152, 31);
-		CPanel.add(RCus);
 
 		String headerGuest[] = { "고객 번호", "현재 인원", "고객 이름", "숙박일", "차 번호", "방 번호" };
 		DefaultTableModel modelGuest = new DefaultTableModel(headerGuest, 0);

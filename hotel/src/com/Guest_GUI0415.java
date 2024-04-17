@@ -38,8 +38,10 @@ public class Guest_GUI0415 extends JFrame {
     private JTextField phoneNum;
     private JTextField carNum;
     private JTextField timeNum;
+    private JTextField name;
     private int lastpage;
     private JLabel time;
+    JTable tableRoom;
     /**
      * Launch the application.
      */
@@ -95,7 +97,7 @@ public class Guest_GUI0415 extends JFrame {
         page5.setVisible(pageNumber == 5);
     }
     
-    private void initializePage1() {
+    public void initializePage1() {
         page1 = new JPanel();
         page1.setBounds(0, 0, 634, 442);
         page1.setLayout(null);
@@ -104,7 +106,7 @@ public class Guest_GUI0415 extends JFrame {
         
 		String headerRoom[] = { "방 번호", "현재 상태", "수용 가능 인원", "체크인", "체크아웃" };
 		DefaultTableModel modelRoom = new DefaultTableModel(headerRoom, 0);
-		JTable tableRoom = new JTable(modelRoom);
+		tableRoom = new JTable(modelRoom);
 		tableRoom.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		tableRoom.setBounds(31, 62, 381, 119);
 		JScrollPane scrolledTable = new JScrollPane(tableRoom); // 수정된 부분
@@ -242,39 +244,56 @@ public class Guest_GUI0415 extends JFrame {
         phoneNum = new JTextField();
         phoneNum.setBounds(300, 150, 200, 30);
         page2.add(phoneNum);
+        
+        name = new JTextField();
+        name.setBounds(300, 200, 200, 30);
+        page2.add(name);
 
         carNum = new JTextField();
-        carNum.setBounds(300, 200, 200, 30);
+        carNum.setBounds(300, 250, 200, 30);
         page2.add(carNum);
         
         timeNum = new JTextField();
-        timeNum.setBounds(300, 250, 200, 30);
+        timeNum.setBounds(300, 300, 200, 30);
         page2.add(timeNum);
         
         JLabel label2 = new JLabel("차량 번호:");
-        label2.setBounds(200, 200, 100, 30);  // 위치와 크기 설정
+        label2.setBounds(200, 250, 100, 30);  // 위치와 크기 설정
         page2.add(label2);
         JLabel label1 = new JLabel("전화번호:");
         label1.setBounds(200, 150, 100, 30);  // 위치와 크기 설정
         page2.add(label1);
         
+        JLabel label3 = new JLabel("이름:");
+        label3.setBounds(200, 200, 100, 30);  // 위치와 크기 설정
+        page2.add(label3);
+        
         time = new JLabel(":");
-        time.setBounds(200, 250, 100, 30);  // 위치와 크기 설정
+        time.setBounds(200, 300, 100, 30);  // 위치와 크기 설정
         page2.add(time);
         
         JButton btnToPage4 = new JButton("다음");
         btnToPage4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-				
+            	int selectedRow = tableRoom.getSelectedRow();
+				if (selectedRow != -1) { // Ensure a row is selected
+					// Get the values from the selected row
+					String room_no = tableRoom.getValueAt(selectedRow, 0).toString();
+					// Print the values to console
+					System.out.println("선택된 방");
+					System.out.println("Room Number: " + room_no);
 				String guest_pno = phoneNum.getText();
                 String car_no = carNum.getText();
+                String guest_name = name.getText();
                 String stay_days = timeNum.getText();
+                String room_no2 = room_no;
                 
                 GuestDTO dto = new GuestDTO();
 	            dto.setGuest_pno(guest_pno);
 	            dto.setCar_no(car_no);
+	            dto.setGuest_name(guest_name);
 	            dto.setGuest_name(stay_days);
-       
+	            dto.setRoom_no(Integer.parseInt(room_no2));
 	            
 	            GuestService service = new GuestServiceImpl();
 	            service.setDao(new GuestDAO());
@@ -285,7 +304,7 @@ public class Guest_GUI0415 extends JFrame {
 	            lastpage = 2;
                 showPage(4);
 		        }
-            
+            }
         });
         
         btnToPage4.setBounds(484, 0, 150, 30);
