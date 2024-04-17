@@ -18,7 +18,7 @@
    </insert>
    
    <!-- 삭제 -->
-   <delete id="remove_G" parameterType="int" >
+   <delete id="remove_G" parameterType="String" >
       delete from tb_guest
       where guest_pno =#{guest_pno}
    </delete>
