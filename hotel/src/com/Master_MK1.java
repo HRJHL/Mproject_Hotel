@@ -72,17 +72,6 @@ public class Master_MK1 {
 		Panel CPanel = new Panel(); // 고객 관리
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		MPanel.setBounds(0, 0, 436, 263);
 		frame.getContentPane().add(MPanel);
 		MPanel.setLayout(null);

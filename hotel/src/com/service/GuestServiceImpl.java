@@ -60,7 +60,7 @@ public class GuestServiceImpl implements GuestService{
 	}
 	
 	@Override
-	public int remove_G(int guest_pno) {
+	public int remove_G(String guest_pno) {
 		int n = 0;
 		SqlSession session = null;
 	      try {

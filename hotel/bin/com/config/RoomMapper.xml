@@ -35,7 +35,7 @@
                room_checkin_time, 
                room_checkout_time
         from tb_room
-        where room_capacity < 2 
+        where room_capacity < 3 
         order by room_no desc
     ]]>
 </select>

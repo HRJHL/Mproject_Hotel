@@ -334,15 +334,39 @@ public class Guest_GUI0415 extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	lastpage = 3;
             	if(state.equals("연장")) {
-            		String guest_pno = phoneNum.getText();
-            		String stay_days = "2";
-            				
-					GuestDTO dto = new GuestDTO();
-					dto.setGuest_pno(guest_pno);
-					dto.setStay_days(Integer.parseInt(stay_days));
-					
-					GuestService service = new GuestServiceImpl();
+    				String guest_pno;
+    				int m_count;
+    				String guest_name;
+    				int stay_days=0;
+    				String car_no;
+    				int room_no;
+    				
+    				String guest_pno2 = phoneNum.getText();
+            		int stay_days2=0;
+            		
+    				GuestService service = new GuestServiceImpl();
 					service.setDao(new GuestDAO());
+    				List<GuestDTO> list = service.find_G();
+    				for (GuestDTO s : list) {
+    					guest_pno = s.getGuest_pno();
+    					m_count = s.getM_count();
+    					guest_name = s.getGuest_name();
+    					stay_days = s.getStay_days();
+    					car_no = s.getCar_no();
+    					room_no= s.getRoom_no();
+    					System.out.println(guest_pno2);
+    					if(guest_pno.equals(guest_pno2)) {
+    						System.out.println("덧셈");
+    						stay_days2 = stay_days+1;
+    					}
+    				}
+    				
+            		
+					GuestDTO dto = new GuestDTO();
+					dto.setGuest_pno(guest_pno2);
+					dto.setStay_days(stay_days2);
+					
+					
 
 					int n = service.update_P(dto);
 					System.out.println(n + "업데이트됨.");
@@ -359,7 +383,7 @@ public class Guest_GUI0415 extends JFrame {
 
 					GuestService service = new GuestServiceImpl();
 					service.setDao(new GuestDAO());
-					int n = service.remove_G(Integer.parseInt(guest_pno));
+					int n = service.remove_G(guest_pno);
 					System.out.println(n + " 개가 삭제됨.");
             		showPage(5);
             		}

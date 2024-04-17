@@ -24,7 +24,7 @@ public class GuestDAO {
 	}
 	
 	//remove
-	public int remove_G(SqlSession session, int guest_pno) {
+	public int remove_G(SqlSession session, String guest_pno) {
 		return session.delete("com.config.GuestMapper.remove_G", guest_pno);
 	}
 	
