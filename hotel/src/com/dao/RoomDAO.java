@@ -17,7 +17,10 @@ public class RoomDAO {
 				session.selectList("com.config.RoomMapper.find_R12");
 		return list;
 	}
-	
+	public List<RoomDTO> find_Empty(SqlSession session) {
+	      List<RoomDTO> list = session.selectList("com.config.RoomMapper.find_Empty");
+	      return list;
+	   }
 	public List<RoomDTO> find_R34(SqlSession session){
 		List<RoomDTO> list = 
 				session.selectList("com.config.RoomMapper.find_R34");

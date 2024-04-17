@@ -35,7 +35,7 @@ public class Guest_GUI0415 extends JFrame {
     private JPanel page5;
     private String state;
     private JLabel stateLabel;
-    private JTextField phoneNum;
+    public JTextField phoneNum;
     private JTextField carNum;
     private JTextField timeNum;
     private JTextField name;
@@ -114,36 +114,36 @@ public class Guest_GUI0415 extends JFrame {
 		page1.add(scrolledTable); // 수정된 부분
         
 		JButton headr = new JButton("목록");
-		headr.setBounds(80, 10, 80, 20);
-		headr.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				DefaultTableModel model = (DefaultTableModel) tableRoom.getModel();
+	      headr.setBounds(80, 10, 80, 20);
+	      headr.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent e) {
+	            DefaultTableModel model = (DefaultTableModel) tableRoom.getModel();
 
-				model.setRowCount(0);
-				int room_no;
-				int room_state;
-				int room_capacity;
-				String room_checkin_time;
-				String room_checkout_time;
-				
-				RoomService service = new RoomServiceImpl();
-				service.setDao(new RoomDAO());
-				List<RoomDTO> list = service.find_Q();
-				for (RoomDTO s : list) {
-					room_no = s.getRoom_no();
-					room_state = s.getRoom_state();
-					room_capacity = s.getRoom_capacity();
-					room_checkin_time = s.getRoom_checkin_time();
-					room_checkout_time = s.getRoom_checkout_time();
-					
+	            model.setRowCount(0);
+	            int room_no;
+	            int room_state;
+	            int room_capacity;
+	            String room_checkin_time;
+	            String room_checkout_time;
 
-					String[] row = { Integer.toString(room_no), Integer.toString(room_state), Integer.toString(room_capacity),room_checkin_time, room_checkout_time};
+	            RoomService service = new RoomServiceImpl();
+	            service.setDao(new RoomDAO());
+	            List<RoomDTO> list = service.find_Empty();
+	            for (RoomDTO s : list) {
+	               room_no = s.getRoom_no();
+	               room_state = s.getRoom_state();
+	               room_capacity = s.getRoom_capacity();
+	               room_checkin_time = s.getRoom_checkin_time();
+	               room_checkout_time = s.getRoom_checkout_time();
 
-					model.addRow(row);
-				}
-			}
-		});
+	               String[] row = { Integer.toString(room_no), Integer.toString(room_state),
+	                     Integer.toString(room_capacity), room_checkin_time, room_checkout_time };
+
+	               model.addRow(row);
+	            }
+	         }
+	      });
 		page1.add(headr);
 		
 //버튼 4개를 띄웁니다.
@@ -241,9 +241,10 @@ public class Guest_GUI0415 extends JFrame {
         });
         btnToPage1.setBounds(0, 0, 150, 30);
         page2.add(btnToPage1);
-        phoneNum = new JTextField();
-        phoneNum.setBounds(300, 150, 200, 30);
-        page2.add(phoneNum);
+        
+        JTextField phoneNum2 = new JTextField();
+        phoneNum2.setBounds(300, 150, 200, 30);
+        page2.add(phoneNum2);
         
         name = new JTextField();
         name.setBounds(300, 200, 200, 30);
@@ -276,35 +277,40 @@ public class Guest_GUI0415 extends JFrame {
         btnToPage4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	int selectedRow = tableRoom.getSelectedRow();
-				if (selectedRow != -1) { // Ensure a row is selected
+            	String room_no= "";
+            	if (selectedRow != -1) { // Ensure a row is selected
 					// Get the values from the selected row
-					String room_no = tableRoom.getValueAt(selectedRow, 0).toString();
+					room_no = tableRoom.getValueAt(selectedRow, 0).toString();
 					// Print the values to console
 					System.out.println("선택된 방");
 					System.out.println("Room Number: " + room_no);
-				String guest_pno = phoneNum.getText();
+				}
+				String guest_pno2 = phoneNum2.getText();
                 String car_no = carNum.getText();
                 String guest_name = name.getText();
                 String stay_days = timeNum.getText();
                 String room_no2 = room_no;
                 
                 GuestDTO dto = new GuestDTO();
-	            dto.setGuest_pno(guest_pno);
-	            dto.setCar_no(car_no);
+	            dto.setGuest_pno(guest_pno2);
 	            dto.setGuest_name(guest_name);
-	            dto.setGuest_name(stay_days);
+	            dto.setStay_days(Integer.parseInt(stay_days));
+	            dto.setCar_no(car_no);
 	            dto.setRoom_no(Integer.parseInt(room_no2));
 	            
 	            GuestService service = new GuestServiceImpl();
 	            service.setDao(new GuestDAO());
 	            
 	            int n = service.save_P(dto);
+	            System.out.println("폰번호: " + phoneNum2.getText());
+	            System.out.println("이름: " + name.getText());
+	            System.out.println("폰번호: " + guest_pno2);
 	            System.out.println(n+"생성됨.");
 	            
 	            lastpage = 2;
                 showPage(4);
 		        }
-            }
+            
         });
         
         btnToPage4.setBounds(484, 0, 150, 30);

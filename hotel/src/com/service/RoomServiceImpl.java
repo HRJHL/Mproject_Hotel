@@ -16,7 +16,19 @@ public class RoomServiceImpl implements RoomService{
 	public void setDao(RoomDAO dao) {
 		this.dao = dao;
 	}
-	
+	@Override
+	   public List<RoomDTO> find_Empty() {
+	      List<RoomDTO> list = null;
+	      SqlSession session = null;
+	      try {
+	         session = MySqlSessionFactory.getSession();
+	         // DAO 연동코드
+	         list = dao.find_Empty(session);
+	      } finally {
+	         session.close();
+	      }
+	      return list;
+	   }
 	@Override
 	public List<RoomDTO> find_Q() {
 	 List<RoomDTO> list = null;	

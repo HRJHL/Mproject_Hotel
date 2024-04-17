@@ -14,4 +14,5 @@ public interface RoomService {
     public int save_R(RoomDTO dto);
 	public int remove_R(int room_no);
 	public int update_R(RoomDTO dto);
+	public List<RoomDTO> find_Empty();
 }
