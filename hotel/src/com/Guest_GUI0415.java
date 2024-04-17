@@ -60,8 +60,9 @@ public class Guest_GUI0415 extends JFrame {
      * Create the frame.
      */
     public Guest_GUI0415() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 650, 480);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    	setBounds(100, 100, 650, 480);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -356,7 +357,7 @@ public class Guest_GUI0415 extends JFrame {
     					room_no= s.getRoom_no();
     					System.out.println(guest_pno2);
     					if(guest_pno.equals(guest_pno2)) {
-    						System.out.println("덧셈");
+    						System.out.println("연장되었습니다");
     						stay_days2 = stay_days+1;
     					}
     				}

@@ -2,6 +2,7 @@ package com;
 
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -64,12 +66,46 @@ public class Master_MK1 {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 453, 302);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		Panel MPanel = new Panel(); // 메인
 		Panel RPanel = new Panel(); // 방 관리
 		Panel CPanel = new Panel(); // 고객 관리
+		Panel PPanel = new Panel();
+		
+		
+		
+		
+		
+	      PPanel.setBounds(0, 0, 436, 263);
+	      frame.getContentPane().add(PPanel);
+	      PPanel.setLayout(null);
+	     
+	      JTextField passwordField = new JPasswordField();
+	      passwordField.setToolTipText("Password");
+	      passwordField.setBounds(123, 136, 176, 30);
+	      PPanel.add(passwordField);
+	     
+	      JLabel lblNewLabel = new JLabel("비밀번호를 입력하세요");
+	      lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 20));
+	      lblNewLabel.setBounds(123, 52, 217, 39);
+	      PPanel.add(lblNewLabel);
+	     
+	      JButton PasswordB = new JButton("다음");
+	      PasswordB.setBounds(285, 192, 111, 39);
+	      PasswordB.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent e) {
+	            PPanel.setVisible(false);
+	            MPanel.setVisible(true);
+	         }
+	      });
+	      PPanel.add(PasswordB);
+		
+		
+		
+		
 		
 		
 		MPanel.setBounds(0, 0, 436, 263);
@@ -302,7 +338,64 @@ public class Master_MK1 {
 				}
 			}
 		});
+		
+		Create_Rm.addActionListener(new ActionListener() {
+	         @Override
+	         public void actionPerformed(ActionEvent e) {
 
+	            // Create a new JFrame for the update popup
+	            JFrame updateFrame = new JFrame("Create Room");
+	            updateFrame.setSize(400, 300);
+
+	            // Create text fields for each column
+	            JTextField room_noField = new JTextField(10);
+	            JTextField capacityField = new JTextField(10);
+	            JTextField stateField = new JTextField(10);
+
+	            // Add text fields to the frame
+	            updateFrame.add(new JLabel("Room_no:"));
+	            updateFrame.add(room_noField);
+	            updateFrame.add(new JLabel("Capacity:"));
+	            updateFrame.add(capacityField);
+	            updateFrame.add(new JLabel("State:"));
+	            updateFrame.add(stateField);
+
+	            // Create a button to confirm update
+	            JButton updateButton = new JButton("생성완료");
+	            updateButton.addActionListener(new ActionListener() {
+	               @Override
+	               public void actionPerformed(ActionEvent e) {
+	                  // Get values from text fields
+	                  int room_no = Integer.parseInt(room_noField.getText());
+	                  int capacity = Integer.parseInt(capacityField.getText());
+	                  int state = Integer.parseInt(stateField.getText());
+
+	                  RoomDTO dto = new RoomDTO();
+	                  dto.setRoom_no(room_no);
+	                  dto.setRoom_capacity(capacity);
+	                  dto.setRoom_state(state);
+
+	                  RoomService service = new RoomServiceImpl();
+	                  service.setDao(new RoomDAO());
+
+	                  int n = service.save_R(dto);
+	                  System.out.println(n + "업데이트됨.");
+
+	                  // Close the update frame
+	                  updateFrame.dispose();
+	               }
+	            });
+
+	            // Add update button to the frame
+	            updateFrame.add(updateButton);
+
+	            // Set layout for the frame
+	            updateFrame.setLayout(new FlowLayout());
+	            updateFrame.setVisible(true);
+	         }
+
+	      });
+		
 		Update_Rm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -577,7 +670,7 @@ public class Master_MK1 {
 			
 		});
 		
-
+		
 	    // 버튼: 메인 패널에 Guest GUI 열기
 	    JButton btnOpenGuestGUIMain = new JButton("Open Guest GUI");
 	    btnOpenGuestGUIMain.setBounds(0, 223, 150, 30);
@@ -619,3 +712,4 @@ public class Master_MK1 {
 
 
 }
+
